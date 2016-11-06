@@ -46,19 +46,19 @@
 												this.surname = new System.Windows.Forms.TextBox();
 												this.name = new System.Windows.Forms.TextBox();
 												this.education = new System.Windows.Forms.TabPage();
-												this.obtainedDegreesAndTitlesGroupBox = new System.Windows.Forms.GroupBox();
-												this.editDegreeOrTitle = new System.Windows.Forms.Button();
-												this.removeDegreeOrTitle = new System.Windows.Forms.Button();
-												this.addDegreeOrTitle = new System.Windows.Forms.Button();
-												this.obtainedDegreesAndTitlesTable = new System.Windows.Forms.ListView();
-												this.degreeOrTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-												this.degreeOrTitleName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-												this.obtainingYear = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+												this.titlesGroupBox = new System.Windows.Forms.GroupBox();
+												this.editTitle = new System.Windows.Forms.Button();
+												this.removeTitle = new System.Windows.Forms.Button();
+												this.addTitle = new System.Windows.Forms.Button();
+												this.titlesTable = new System.Windows.Forms.ListView();
+												this.titleType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+												this.titleName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+												this.titleObtainingYear = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 												this.academyGroupBox = new System.Windows.Forms.GroupBox();
-												this.textBox7 = new System.Windows.Forms.TextBox();
-												this.textBox6 = new System.Windows.Forms.TextBox();
-												this.academyName = new System.Windows.Forms.Label();
-												this.facultyName = new System.Windows.Forms.Label();
+												this.facultyName = new System.Windows.Forms.TextBox();
+												this.academyName = new System.Windows.Forms.TextBox();
+												this.academyNameLabel = new System.Windows.Forms.Label();
+												this.facultyNameLabel = new System.Windows.Forms.Label();
 												this.jobs = new System.Windows.Forms.TabPage();
 												this.exJobsTable = new System.Windows.Forms.ListView();
 												this.exJobPosition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -73,37 +73,38 @@
 												this.removeAchievement = new System.Windows.Forms.Button();
 												this.editAchievement = new System.Windows.Forms.Button();
 												this.addAchievement = new System.Windows.Forms.Button();
-												this.position = new System.Windows.Forms.TabPage();
-												this.groupBox2 = new System.Windows.Forms.GroupBox();
-												this.radioButton1 = new System.Windows.Forms.RadioButton();
-												this.radioButton2 = new System.Windows.Forms.RadioButton();
-												this.groupBox1 = new System.Windows.Forms.GroupBox();
-												this.textBox2 = new System.Windows.Forms.TextBox();
-												this.checkBox1 = new System.Windows.Forms.CheckBox();
-												this.label6 = new System.Windows.Forms.Label();
-												this.label4 = new System.Windows.Forms.Label();
-												this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-												this.label3 = new System.Windows.Forms.Label();
-												this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-												this.label2 = new System.Windows.Forms.Label();
-												this.label1 = new System.Windows.Forms.Label();
-												this.comboBox1 = new System.Windows.Forms.ComboBox();
-												this.textBox1 = new System.Windows.Forms.TextBox();
+												this.employment = new System.Windows.Forms.TabPage();
+												this.employmentBaseGroupBox = new System.Windows.Forms.GroupBox();
+												this.nominationRadioButton = new System.Windows.Forms.RadioButton();
+												this.contractRadioButton = new System.Windows.Forms.RadioButton();
+												this.workingTimeGroupBox = new System.Windows.Forms.GroupBox();
+												this.workingTime = new System.Windows.Forms.TextBox();
+												this.fullWorkingTimeCheckBox = new System.Windows.Forms.CheckBox();
+												this.workingTimeLabel = new System.Windows.Forms.Label();
+												this.endDateLabel = new System.Windows.Forms.Label();
+												this.endDate = new System.Windows.Forms.DateTimePicker();
+												this.forPeriodLabel = new System.Windows.Forms.Label();
+												this.startDate = new System.Windows.Forms.DateTimePicker();
+												this.startDateLabel = new System.Windows.Forms.Label();
+												this.positionLabel = new System.Windows.Forms.Label();
+												this.forPeriod = new System.Windows.Forms.ComboBox();
+												this.position = new System.Windows.Forms.TextBox();
 												this.walidateAndSave = new System.Windows.Forms.Button();
 												this.loadXml = new System.Windows.Forms.Button();
 												this.date = new System.Windows.Forms.DateTimePicker();
 												this.dateLabel = new System.Windows.Forms.Label();
+												this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
 												this.applicationTabControl.SuspendLayout();
 												this.candidateData.SuspendLayout();
 												this.addressGroupBox.SuspendLayout();
 												this.education.SuspendLayout();
-												this.obtainedDegreesAndTitlesGroupBox.SuspendLayout();
+												this.titlesGroupBox.SuspendLayout();
 												this.academyGroupBox.SuspendLayout();
 												this.jobs.SuspendLayout();
 												this.achievements.SuspendLayout();
-												this.position.SuspendLayout();
-												this.groupBox2.SuspendLayout();
-												this.groupBox1.SuspendLayout();
+												this.employment.SuspendLayout();
+												this.employmentBaseGroupBox.SuspendLayout();
+												this.workingTimeGroupBox.SuspendLayout();
 												this.SuspendLayout();
 												// 
 												// applicationTabControl
@@ -112,7 +113,7 @@
 												this.applicationTabControl.Controls.Add(this.education);
 												this.applicationTabControl.Controls.Add(this.jobs);
 												this.applicationTabControl.Controls.Add(this.achievements);
-												this.applicationTabControl.Controls.Add(this.position);
+												this.applicationTabControl.Controls.Add(this.employment);
 												this.applicationTabControl.Location = new System.Drawing.Point(12, 41);
 												this.applicationTabControl.Name = "applicationTabControl";
 												this.applicationTabControl.SelectedIndex = 0;
@@ -267,7 +268,7 @@
 												// 
 												// education
 												// 
-												this.education.Controls.Add(this.obtainedDegreesAndTitlesGroupBox);
+												this.education.Controls.Add(this.titlesGroupBox);
 												this.education.Controls.Add(this.academyGroupBox);
 												this.education.Location = new System.Drawing.Point(4, 22);
 												this.education.Name = "education";
@@ -277,83 +278,83 @@
 												this.education.Text = "Wykształcenie";
 												this.education.UseVisualStyleBackColor = true;
 												// 
-												// obtainedDegreesAndTitlesGroupBox
+												// titlesGroupBox
 												// 
-												this.obtainedDegreesAndTitlesGroupBox.Controls.Add(this.editDegreeOrTitle);
-												this.obtainedDegreesAndTitlesGroupBox.Controls.Add(this.removeDegreeOrTitle);
-												this.obtainedDegreesAndTitlesGroupBox.Controls.Add(this.addDegreeOrTitle);
-												this.obtainedDegreesAndTitlesGroupBox.Controls.Add(this.obtainedDegreesAndTitlesTable);
-												this.obtainedDegreesAndTitlesGroupBox.Location = new System.Drawing.Point(9, 95);
-												this.obtainedDegreesAndTitlesGroupBox.Name = "obtainedDegreesAndTitlesGroupBox";
-												this.obtainedDegreesAndTitlesGroupBox.Size = new System.Drawing.Size(399, 156);
-												this.obtainedDegreesAndTitlesGroupBox.TabIndex = 4;
-												this.obtainedDegreesAndTitlesGroupBox.TabStop = false;
-												this.obtainedDegreesAndTitlesGroupBox.Text = "Uzyskane stopnie i tytuły";
+												this.titlesGroupBox.Controls.Add(this.editTitle);
+												this.titlesGroupBox.Controls.Add(this.removeTitle);
+												this.titlesGroupBox.Controls.Add(this.addTitle);
+												this.titlesGroupBox.Controls.Add(this.titlesTable);
+												this.titlesGroupBox.Location = new System.Drawing.Point(9, 95);
+												this.titlesGroupBox.Name = "titlesGroupBox";
+												this.titlesGroupBox.Size = new System.Drawing.Size(399, 156);
+												this.titlesGroupBox.TabIndex = 4;
+												this.titlesGroupBox.TabStop = false;
+												this.titlesGroupBox.Text = "Uzyskane stopnie i tytuły";
 												// 
-												// editDegreeOrTitle
+												// editTitle
 												// 
-												this.editDegreeOrTitle.Location = new System.Drawing.Point(180, 18);
-												this.editDegreeOrTitle.Name = "editDegreeOrTitle";
-												this.editDegreeOrTitle.Size = new System.Drawing.Size(99, 23);
-												this.editDegreeOrTitle.TabIndex = 6;
-												this.editDegreeOrTitle.Text = "Edytuj";
-												this.editDegreeOrTitle.UseVisualStyleBackColor = true;
+												this.editTitle.Location = new System.Drawing.Point(180, 18);
+												this.editTitle.Name = "editTitle";
+												this.editTitle.Size = new System.Drawing.Size(99, 23);
+												this.editTitle.TabIndex = 6;
+												this.editTitle.Text = "Edytuj";
+												this.editTitle.UseVisualStyleBackColor = true;
 												// 
-												// removeDegreeOrTitle
+												// removeTitle
 												// 
-												this.removeDegreeOrTitle.Location = new System.Drawing.Point(285, 18);
-												this.removeDegreeOrTitle.Name = "removeDegreeOrTitle";
-												this.removeDegreeOrTitle.Size = new System.Drawing.Size(99, 23);
-												this.removeDegreeOrTitle.TabIndex = 5;
-												this.removeDegreeOrTitle.Text = "Usuń";
-												this.removeDegreeOrTitle.UseVisualStyleBackColor = true;
+												this.removeTitle.Location = new System.Drawing.Point(285, 18);
+												this.removeTitle.Name = "removeTitle";
+												this.removeTitle.Size = new System.Drawing.Size(99, 23);
+												this.removeTitle.TabIndex = 5;
+												this.removeTitle.Text = "Usuń";
+												this.removeTitle.UseVisualStyleBackColor = true;
 												// 
-												// addDegreeOrTitle
+												// addTitle
 												// 
-												this.addDegreeOrTitle.Location = new System.Drawing.Point(11, 18);
-												this.addDegreeOrTitle.Name = "addDegreeOrTitle";
-												this.addDegreeOrTitle.Size = new System.Drawing.Size(163, 23);
-												this.addDegreeOrTitle.TabIndex = 4;
-												this.addDegreeOrTitle.Text = "Dodaj";
-												this.addDegreeOrTitle.UseVisualStyleBackColor = true;
+												this.addTitle.Location = new System.Drawing.Point(11, 18);
+												this.addTitle.Name = "addTitle";
+												this.addTitle.Size = new System.Drawing.Size(163, 23);
+												this.addTitle.TabIndex = 4;
+												this.addTitle.Text = "Dodaj";
+												this.addTitle.UseVisualStyleBackColor = true;
 												// 
-												// obtainedDegreesAndTitlesTable
+												// titlesTable
 												// 
-												this.obtainedDegreesAndTitlesTable.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.degreeOrTitle,
-            this.degreeOrTitleName,
-            this.obtainingYear});
-												this.obtainedDegreesAndTitlesTable.FullRowSelect = true;
-												this.obtainedDegreesAndTitlesTable.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-												this.obtainedDegreesAndTitlesTable.Location = new System.Drawing.Point(11, 47);
-												this.obtainedDegreesAndTitlesTable.MultiSelect = false;
-												this.obtainedDegreesAndTitlesTable.Name = "obtainedDegreesAndTitlesTable";
-												this.obtainedDegreesAndTitlesTable.Size = new System.Drawing.Size(373, 103);
-												this.obtainedDegreesAndTitlesTable.TabIndex = 3;
-												this.obtainedDegreesAndTitlesTable.UseCompatibleStateImageBehavior = false;
-												this.obtainedDegreesAndTitlesTable.View = System.Windows.Forms.View.Details;
+												this.titlesTable.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.titleType,
+            this.titleName,
+            this.titleObtainingYear});
+												this.titlesTable.FullRowSelect = true;
+												this.titlesTable.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+												this.titlesTable.Location = new System.Drawing.Point(11, 47);
+												this.titlesTable.MultiSelect = false;
+												this.titlesTable.Name = "titlesTable";
+												this.titlesTable.Size = new System.Drawing.Size(373, 103);
+												this.titlesTable.TabIndex = 3;
+												this.titlesTable.UseCompatibleStateImageBehavior = false;
+												this.titlesTable.View = System.Windows.Forms.View.Details;
 												// 
-												// degreeOrTitle
+												// titleType
 												// 
-												this.degreeOrTitle.Text = "Stopień/tytuł";
-												this.degreeOrTitle.Width = 128;
+												this.titleType.Text = "Stopień/tytuł";
+												this.titleType.Width = 128;
 												// 
-												// degreeOrTitleName
+												// titleName
 												// 
-												this.degreeOrTitleName.Text = "Nazwa";
-												this.degreeOrTitleName.Width = 148;
+												this.titleName.Text = "Nazwa";
+												this.titleName.Width = 148;
 												// 
-												// obtainingYear
+												// titleObtainingYear
 												// 
-												this.obtainingYear.Text = "Rok uzyskania";
-												this.obtainingYear.Width = 82;
+												this.titleObtainingYear.Text = "Rok uzyskania";
+												this.titleObtainingYear.Width = 82;
 												// 
 												// academyGroupBox
 												// 
-												this.academyGroupBox.Controls.Add(this.textBox7);
-												this.academyGroupBox.Controls.Add(this.textBox6);
-												this.academyGroupBox.Controls.Add(this.academyName);
 												this.academyGroupBox.Controls.Add(this.facultyName);
+												this.academyGroupBox.Controls.Add(this.academyName);
+												this.academyGroupBox.Controls.Add(this.academyNameLabel);
+												this.academyGroupBox.Controls.Add(this.facultyNameLabel);
 												this.academyGroupBox.Location = new System.Drawing.Point(6, 6);
 												this.academyGroupBox.Name = "academyGroupBox";
 												this.academyGroupBox.Size = new System.Drawing.Size(402, 83);
@@ -361,37 +362,37 @@
 												this.academyGroupBox.TabStop = false;
 												this.academyGroupBox.Text = "Ukończona uczelnia";
 												// 
-												// textBox7
+												// facultyName
 												// 
-												this.textBox7.Location = new System.Drawing.Point(102, 52);
-												this.textBox7.Name = "textBox7";
-												this.textBox7.Size = new System.Drawing.Size(268, 20);
-												this.textBox7.TabIndex = 3;
-												// 
-												// textBox6
-												// 
-												this.textBox6.Location = new System.Drawing.Point(102, 26);
-												this.textBox6.Name = "textBox6";
-												this.textBox6.Size = new System.Drawing.Size(268, 20);
-												this.textBox6.TabIndex = 2;
+												this.facultyName.Location = new System.Drawing.Point(102, 52);
+												this.facultyName.Name = "facultyName";
+												this.facultyName.Size = new System.Drawing.Size(268, 20);
+												this.facultyName.TabIndex = 3;
 												// 
 												// academyName
 												// 
-												this.academyName.AutoSize = true;
-												this.academyName.Location = new System.Drawing.Point(6, 29);
+												this.academyName.Location = new System.Drawing.Point(102, 26);
 												this.academyName.Name = "academyName";
-												this.academyName.Size = new System.Drawing.Size(79, 13);
-												this.academyName.TabIndex = 0;
-												this.academyName.Text = "Nazwa uczelni:";
+												this.academyName.Size = new System.Drawing.Size(268, 20);
+												this.academyName.TabIndex = 2;
 												// 
-												// facultyName
+												// academyNameLabel
 												// 
-												this.facultyName.AutoSize = true;
-												this.facultyName.Location = new System.Drawing.Point(6, 55);
-												this.facultyName.Name = "facultyName";
-												this.facultyName.Size = new System.Drawing.Size(88, 13);
-												this.facultyName.TabIndex = 1;
-												this.facultyName.Text = "Nazwa wydziału:";
+												this.academyNameLabel.AutoSize = true;
+												this.academyNameLabel.Location = new System.Drawing.Point(6, 29);
+												this.academyNameLabel.Name = "academyNameLabel";
+												this.academyNameLabel.Size = new System.Drawing.Size(79, 13);
+												this.academyNameLabel.TabIndex = 0;
+												this.academyNameLabel.Text = "Nazwa uczelni:";
+												// 
+												// facultyNameLabel
+												// 
+												this.facultyNameLabel.AutoSize = true;
+												this.facultyNameLabel.Location = new System.Drawing.Point(6, 55);
+												this.facultyNameLabel.Name = "facultyNameLabel";
+												this.facultyNameLabel.Size = new System.Drawing.Size(88, 13);
+												this.facultyNameLabel.TabIndex = 1;
+												this.facultyNameLabel.Text = "Nazwa wydziału:";
 												// 
 												// jobs
 												// 
@@ -518,166 +519,167 @@
 												this.addAchievement.Text = "Dodaj";
 												this.addAchievement.UseVisualStyleBackColor = true;
 												// 
-												// position
+												// employment
 												// 
-												this.position.Controls.Add(this.groupBox2);
-												this.position.Controls.Add(this.groupBox1);
-												this.position.Controls.Add(this.label4);
-												this.position.Controls.Add(this.dateTimePicker2);
-												this.position.Controls.Add(this.label3);
-												this.position.Controls.Add(this.dateTimePicker1);
-												this.position.Controls.Add(this.label2);
-												this.position.Controls.Add(this.label1);
-												this.position.Controls.Add(this.comboBox1);
-												this.position.Controls.Add(this.textBox1);
-												this.position.Location = new System.Drawing.Point(4, 22);
-												this.position.Name = "position";
-												this.position.Size = new System.Drawing.Size(419, 254);
-												this.position.TabIndex = 4;
-												this.position.Text = "Stanowisko";
-												this.position.UseVisualStyleBackColor = true;
+												this.employment.Controls.Add(this.employmentBaseGroupBox);
+												this.employment.Controls.Add(this.workingTimeGroupBox);
+												this.employment.Controls.Add(this.endDateLabel);
+												this.employment.Controls.Add(this.endDate);
+												this.employment.Controls.Add(this.forPeriodLabel);
+												this.employment.Controls.Add(this.startDate);
+												this.employment.Controls.Add(this.startDateLabel);
+												this.employment.Controls.Add(this.positionLabel);
+												this.employment.Controls.Add(this.forPeriod);
+												this.employment.Controls.Add(this.position);
+												this.employment.Location = new System.Drawing.Point(4, 22);
+												this.employment.Name = "employment";
+												this.employment.Size = new System.Drawing.Size(419, 254);
+												this.employment.TabIndex = 4;
+												this.employment.Text = "Stanowisko";
+												this.employment.UseVisualStyleBackColor = true;
 												// 
-												// groupBox2
+												// employmentBaseGroupBox
 												// 
-												this.groupBox2.Controls.Add(this.radioButton1);
-												this.groupBox2.Controls.Add(this.radioButton2);
-												this.groupBox2.Location = new System.Drawing.Point(219, 132);
-												this.groupBox2.Name = "groupBox2";
-												this.groupBox2.Size = new System.Drawing.Size(190, 100);
-												this.groupBox2.TabIndex = 17;
-												this.groupBox2.TabStop = false;
-												this.groupBox2.Text = "Podstawa zatrudnienia";
+												this.employmentBaseGroupBox.Controls.Add(this.nominationRadioButton);
+												this.employmentBaseGroupBox.Controls.Add(this.contractRadioButton);
+												this.employmentBaseGroupBox.Location = new System.Drawing.Point(219, 132);
+												this.employmentBaseGroupBox.Name = "employmentBaseGroupBox";
+												this.employmentBaseGroupBox.Size = new System.Drawing.Size(190, 100);
+												this.employmentBaseGroupBox.TabIndex = 17;
+												this.employmentBaseGroupBox.TabStop = false;
+												this.employmentBaseGroupBox.Text = "Podstawa zatrudnienia";
 												// 
-												// radioButton1
+												// nominationRadioButton
 												// 
-												this.radioButton1.AutoSize = true;
-												this.radioButton1.Location = new System.Drawing.Point(16, 29);
-												this.radioButton1.Name = "radioButton1";
-												this.radioButton1.Size = new System.Drawing.Size(82, 17);
-												this.radioButton1.TabIndex = 5;
-												this.radioButton1.TabStop = true;
-												this.radioButton1.Text = "Mianowanie";
-												this.radioButton1.UseVisualStyleBackColor = true;
+												this.nominationRadioButton.AutoSize = true;
+												this.nominationRadioButton.Location = new System.Drawing.Point(16, 29);
+												this.nominationRadioButton.Name = "nominationRadioButton";
+												this.nominationRadioButton.Size = new System.Drawing.Size(82, 17);
+												this.nominationRadioButton.TabIndex = 5;
+												this.nominationRadioButton.TabStop = true;
+												this.nominationRadioButton.Text = "Mianowanie";
+												this.nominationRadioButton.UseVisualStyleBackColor = true;
 												// 
-												// radioButton2
+												// contractRadioButton
 												// 
-												this.radioButton2.AutoSize = true;
-												this.radioButton2.Location = new System.Drawing.Point(16, 63);
-												this.radioButton2.Name = "radioButton2";
-												this.radioButton2.Size = new System.Drawing.Size(100, 17);
-												this.radioButton2.TabIndex = 6;
-												this.radioButton2.TabStop = true;
-												this.radioButton2.Text = "Umowa o pracę";
-												this.radioButton2.UseVisualStyleBackColor = true;
+												this.contractRadioButton.AutoSize = true;
+												this.contractRadioButton.Location = new System.Drawing.Point(16, 63);
+												this.contractRadioButton.Name = "contractRadioButton";
+												this.contractRadioButton.Size = new System.Drawing.Size(100, 17);
+												this.contractRadioButton.TabIndex = 6;
+												this.contractRadioButton.TabStop = true;
+												this.contractRadioButton.Text = "Umowa o pracę";
+												this.contractRadioButton.UseVisualStyleBackColor = true;
 												// 
-												// groupBox1
+												// workingTimeGroupBox
 												// 
-												this.groupBox1.Controls.Add(this.textBox2);
-												this.groupBox1.Controls.Add(this.checkBox1);
-												this.groupBox1.Controls.Add(this.label6);
-												this.groupBox1.Location = new System.Drawing.Point(13, 132);
-												this.groupBox1.Name = "groupBox1";
-												this.groupBox1.Size = new System.Drawing.Size(190, 100);
-												this.groupBox1.TabIndex = 16;
-												this.groupBox1.TabStop = false;
-												this.groupBox1.Text = "Wymiar zatrudnienia";
+												this.workingTimeGroupBox.Controls.Add(this.workingTime);
+												this.workingTimeGroupBox.Controls.Add(this.fullWorkingTimeCheckBox);
+												this.workingTimeGroupBox.Controls.Add(this.workingTimeLabel);
+												this.workingTimeGroupBox.Location = new System.Drawing.Point(13, 132);
+												this.workingTimeGroupBox.Name = "workingTimeGroupBox";
+												this.workingTimeGroupBox.Size = new System.Drawing.Size(190, 100);
+												this.workingTimeGroupBox.TabIndex = 16;
+												this.workingTimeGroupBox.TabStop = false;
+												this.workingTimeGroupBox.Text = "Wymiar zatrudnienia";
 												// 
-												// textBox2
+												// workingTime
 												// 
-												this.textBox2.Location = new System.Drawing.Point(16, 29);
-												this.textBox2.Name = "textBox2";
-												this.textBox2.Size = new System.Drawing.Size(75, 20);
-												this.textBox2.TabIndex = 1;
+												this.workingTime.Location = new System.Drawing.Point(16, 29);
+												this.workingTime.Name = "workingTime";
+												this.workingTime.Size = new System.Drawing.Size(75, 20);
+												this.workingTime.TabIndex = 1;
 												// 
-												// checkBox1
+												// fullWorkingTimeCheckBox
 												// 
-												this.checkBox1.AutoSize = true;
-												this.checkBox1.Location = new System.Drawing.Point(16, 64);
-												this.checkBox1.Name = "checkBox1";
-												this.checkBox1.Size = new System.Drawing.Size(75, 17);
-												this.checkBox1.TabIndex = 15;
-												this.checkBox1.Text = "pełen etat";
-												this.checkBox1.UseVisualStyleBackColor = true;
+												this.fullWorkingTimeCheckBox.AutoSize = true;
+												this.fullWorkingTimeCheckBox.Location = new System.Drawing.Point(16, 64);
+												this.fullWorkingTimeCheckBox.Name = "fullWorkingTimeCheckBox";
+												this.fullWorkingTimeCheckBox.Size = new System.Drawing.Size(75, 17);
+												this.fullWorkingTimeCheckBox.TabIndex = 15;
+												this.fullWorkingTimeCheckBox.Text = "pełen etat";
+												this.fullWorkingTimeCheckBox.UseVisualStyleBackColor = true;
+												this.fullWorkingTimeCheckBox.CheckedChanged += new System.EventHandler(this.fullWorkingTimeCheckBox_CheckedChanged);
 												// 
-												// label6
+												// workingTimeLabel
 												// 
-												this.label6.AutoSize = true;
-												this.label6.Location = new System.Drawing.Point(97, 36);
-												this.label6.Name = "label6";
-												this.label6.Size = new System.Drawing.Size(31, 13);
-												this.label6.TabIndex = 14;
-												this.label6.Text = "etatu";
+												this.workingTimeLabel.AutoSize = true;
+												this.workingTimeLabel.Location = new System.Drawing.Point(97, 36);
+												this.workingTimeLabel.Name = "workingTimeLabel";
+												this.workingTimeLabel.Size = new System.Drawing.Size(31, 13);
+												this.workingTimeLabel.TabIndex = 14;
+												this.workingTimeLabel.Text = "etatu";
 												// 
-												// label4
+												// endDateLabel
 												// 
-												this.label4.AutoSize = true;
-												this.label4.Location = new System.Drawing.Point(199, 90);
-												this.label4.Name = "label4";
-												this.label4.Size = new System.Drawing.Size(47, 13);
-												this.label4.TabIndex = 12;
-												this.label4.Text = "Do dnia:";
+												this.endDateLabel.AutoSize = true;
+												this.endDateLabel.Location = new System.Drawing.Point(199, 90);
+												this.endDateLabel.Name = "endDateLabel";
+												this.endDateLabel.Size = new System.Drawing.Size(47, 13);
+												this.endDateLabel.TabIndex = 12;
+												this.endDateLabel.Text = "Do dnia:";
 												// 
-												// dateTimePicker2
+												// endDate
 												// 
-												this.dateTimePicker2.Location = new System.Drawing.Point(252, 88);
-												this.dateTimePicker2.Name = "dateTimePicker2";
-												this.dateTimePicker2.Size = new System.Drawing.Size(151, 20);
-												this.dateTimePicker2.TabIndex = 11;
+												this.endDate.Location = new System.Drawing.Point(252, 88);
+												this.endDate.Name = "endDate";
+												this.endDate.Size = new System.Drawing.Size(151, 20);
+												this.endDate.TabIndex = 11;
 												// 
-												// label3
+												// forPeriodLabel
 												// 
-												this.label3.AutoSize = true;
-												this.label3.Location = new System.Drawing.Point(8, 90);
-												this.label3.Name = "label3";
-												this.label3.Size = new System.Drawing.Size(49, 13);
-												this.label3.TabIndex = 10;
-												this.label3.Text = "Na czas:";
+												this.forPeriodLabel.AutoSize = true;
+												this.forPeriodLabel.Location = new System.Drawing.Point(8, 90);
+												this.forPeriodLabel.Name = "forPeriodLabel";
+												this.forPeriodLabel.Size = new System.Drawing.Size(49, 13);
+												this.forPeriodLabel.TabIndex = 10;
+												this.forPeriodLabel.Text = "Na czas:";
 												// 
-												// dateTimePicker1
+												// startDate
 												// 
-												this.dateTimePicker1.Location = new System.Drawing.Point(77, 48);
-												this.dateTimePicker1.Name = "dateTimePicker1";
-												this.dateTimePicker1.Size = new System.Drawing.Size(169, 20);
-												this.dateTimePicker1.TabIndex = 9;
+												this.startDate.Location = new System.Drawing.Point(77, 48);
+												this.startDate.Name = "startDate";
+												this.startDate.Size = new System.Drawing.Size(169, 20);
+												this.startDate.TabIndex = 9;
 												// 
-												// label2
+												// startDateLabel
 												// 
-												this.label2.AutoSize = true;
-												this.label2.Location = new System.Drawing.Point(9, 54);
-												this.label2.Name = "label2";
-												this.label2.Size = new System.Drawing.Size(47, 13);
-												this.label2.TabIndex = 8;
-												this.label2.Text = "Od dnia:";
+												this.startDateLabel.AutoSize = true;
+												this.startDateLabel.Location = new System.Drawing.Point(8, 54);
+												this.startDateLabel.Name = "startDateLabel";
+												this.startDateLabel.Size = new System.Drawing.Size(47, 13);
+												this.startDateLabel.TabIndex = 8;
+												this.startDateLabel.Text = "Od dnia:";
 												// 
-												// label1
+												// positionLabel
 												// 
-												this.label1.AutoSize = true;
-												this.label1.Location = new System.Drawing.Point(8, 17);
-												this.label1.Name = "label1";
-												this.label1.Size = new System.Drawing.Size(65, 13);
-												this.label1.TabIndex = 7;
-												this.label1.Text = "Stanowisko:";
+												this.positionLabel.AutoSize = true;
+												this.positionLabel.Location = new System.Drawing.Point(8, 17);
+												this.positionLabel.Name = "positionLabel";
+												this.positionLabel.Size = new System.Drawing.Size(65, 13);
+												this.positionLabel.TabIndex = 7;
+												this.positionLabel.Text = "Stanowisko:";
 												// 
-												// comboBox1
+												// forPeriod
 												// 
-												this.comboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-												this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-												this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-												this.comboBox1.FormattingEnabled = true;
-												this.comboBox1.Items.AddRange(new object[] {
+												this.forPeriod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+												this.forPeriod.FlatStyle = System.Windows.Forms.FlatStyle.System;
+												this.forPeriod.FormattingEnabled = true;
+												this.forPeriod.Items.AddRange(new object[] {
             "Określony",
             "Nieokreślony"});
-												this.comboBox1.Location = new System.Drawing.Point(77, 87);
-												this.comboBox1.Name = "comboBox1";
-												this.comboBox1.Size = new System.Drawing.Size(94, 21);
-												this.comboBox1.TabIndex = 3;
+												this.forPeriod.Location = new System.Drawing.Point(77, 87);
+												this.forPeriod.Name = "forPeriod";
+												this.forPeriod.Size = new System.Drawing.Size(94, 21);
+												this.forPeriod.TabIndex = 3;
+												this.forPeriod.SelectedIndexChanged += new System.EventHandler(this.forPeriod_SelectedIndexChanged);
 												// 
-												// textBox1
+												// position
 												// 
-												this.textBox1.Location = new System.Drawing.Point(77, 14);
-												this.textBox1.Name = "textBox1";
-												this.textBox1.Size = new System.Drawing.Size(326, 20);
-												this.textBox1.TabIndex = 0;
+												this.position.Location = new System.Drawing.Point(77, 14);
+												this.position.Name = "position";
+												this.position.Size = new System.Drawing.Size(326, 20);
+												this.position.TabIndex = 0;
 												// 
 												// walidateAndSave
 												// 
@@ -687,6 +689,7 @@
 												this.walidateAndSave.TabIndex = 2;
 												this.walidateAndSave.Text = "Waliduj i zapisz";
 												this.walidateAndSave.UseVisualStyleBackColor = true;
+												this.walidateAndSave.Click += new System.EventHandler(this.walidateAndSave_Click);
 												// 
 												// loadXml
 												// 
@@ -696,6 +699,7 @@
 												this.loadXml.TabIndex = 3;
 												this.loadXml.Text = "Wczytaj dane z XML";
 												this.loadXml.UseVisualStyleBackColor = true;
+												this.loadXml.Click += new System.EventHandler(this.loadXml_Click);
 												// 
 												// date
 												// 
@@ -712,6 +716,10 @@
 												this.dateLabel.Size = new System.Drawing.Size(33, 13);
 												this.dateLabel.TabIndex = 5;
 												this.dateLabel.Text = "Data:";
+												// 
+												// openFileDialog
+												// 
+												this.openFileDialog.FileName = "openFileDialog1";
 												// 
 												// mainWindow
 												// 
@@ -731,17 +739,17 @@
 												this.addressGroupBox.ResumeLayout(false);
 												this.addressGroupBox.PerformLayout();
 												this.education.ResumeLayout(false);
-												this.obtainedDegreesAndTitlesGroupBox.ResumeLayout(false);
+												this.titlesGroupBox.ResumeLayout(false);
 												this.academyGroupBox.ResumeLayout(false);
 												this.academyGroupBox.PerformLayout();
 												this.jobs.ResumeLayout(false);
 												this.achievements.ResumeLayout(false);
-												this.position.ResumeLayout(false);
-												this.position.PerformLayout();
-												this.groupBox2.ResumeLayout(false);
-												this.groupBox2.PerformLayout();
-												this.groupBox1.ResumeLayout(false);
-												this.groupBox1.PerformLayout();
+												this.employment.ResumeLayout(false);
+												this.employment.PerformLayout();
+												this.employmentBaseGroupBox.ResumeLayout(false);
+												this.employmentBaseGroupBox.PerformLayout();
+												this.workingTimeGroupBox.ResumeLayout(false);
+												this.workingTimeGroupBox.PerformLayout();
 												this.ResumeLayout(false);
 												this.PerformLayout();
 
@@ -754,7 +762,7 @@
 								private System.Windows.Forms.TabPage education;
 								private System.Windows.Forms.TabPage jobs;
 								private System.Windows.Forms.TabPage achievements;
-								private System.Windows.Forms.TabPage position;
+								private System.Windows.Forms.TabPage employment;
 								private System.Windows.Forms.Button walidateAndSave;
 								private System.Windows.Forms.Button loadXml;
 								private System.Windows.Forms.DateTimePicker date;
@@ -775,18 +783,18 @@
 								private System.Windows.Forms.TextBox city;
 								private System.Windows.Forms.TextBox postCode;
 								private System.Windows.Forms.GroupBox academyGroupBox;
-								private System.Windows.Forms.TextBox textBox7;
-								private System.Windows.Forms.TextBox textBox6;
-								private System.Windows.Forms.Label academyName;
-								private System.Windows.Forms.Label facultyName;
-								private System.Windows.Forms.GroupBox obtainedDegreesAndTitlesGroupBox;
-								private System.Windows.Forms.Button editDegreeOrTitle;
-								private System.Windows.Forms.Button removeDegreeOrTitle;
-								private System.Windows.Forms.Button addDegreeOrTitle;
-								private System.Windows.Forms.ListView obtainedDegreesAndTitlesTable;
-								private System.Windows.Forms.ColumnHeader degreeOrTitle;
-								private System.Windows.Forms.ColumnHeader degreeOrTitleName;
-								private System.Windows.Forms.ColumnHeader obtainingYear;
+								private System.Windows.Forms.TextBox facultyName;
+								private System.Windows.Forms.TextBox academyName;
+								private System.Windows.Forms.Label academyNameLabel;
+								private System.Windows.Forms.Label facultyNameLabel;
+								private System.Windows.Forms.GroupBox titlesGroupBox;
+								private System.Windows.Forms.Button editTitle;
+								private System.Windows.Forms.Button removeTitle;
+								private System.Windows.Forms.Button addTitle;
+								private System.Windows.Forms.ListView titlesTable;
+								private System.Windows.Forms.ColumnHeader titleType;
+								private System.Windows.Forms.ColumnHeader titleName;
+								private System.Windows.Forms.ColumnHeader titleObtainingYear;
 								private System.Windows.Forms.ListView exJobsTable;
 								private System.Windows.Forms.ColumnHeader exJobPosition;
 								private System.Windows.Forms.ColumnHeader exJobPlace;
@@ -799,21 +807,22 @@
 								private System.Windows.Forms.Button removeAchievement;
 								private System.Windows.Forms.Button editAchievement;
 								private System.Windows.Forms.Button addAchievement;
-								private System.Windows.Forms.GroupBox groupBox1;
-								private System.Windows.Forms.TextBox textBox2;
-								private System.Windows.Forms.CheckBox checkBox1;
-								private System.Windows.Forms.Label label6;
-								private System.Windows.Forms.Label label4;
-								private System.Windows.Forms.DateTimePicker dateTimePicker2;
-								private System.Windows.Forms.Label label3;
-								private System.Windows.Forms.DateTimePicker dateTimePicker1;
-								private System.Windows.Forms.Label label2;
-								private System.Windows.Forms.Label label1;
-								private System.Windows.Forms.RadioButton radioButton2;
-								private System.Windows.Forms.RadioButton radioButton1;
-								private System.Windows.Forms.ComboBox comboBox1;
-								private System.Windows.Forms.TextBox textBox1;
-								private System.Windows.Forms.GroupBox groupBox2;
+								private System.Windows.Forms.GroupBox workingTimeGroupBox;
+								private System.Windows.Forms.TextBox workingTime;
+								private System.Windows.Forms.CheckBox fullWorkingTimeCheckBox;
+								private System.Windows.Forms.Label workingTimeLabel;
+								private System.Windows.Forms.Label endDateLabel;
+								private System.Windows.Forms.DateTimePicker endDate;
+								private System.Windows.Forms.Label forPeriodLabel;
+								private System.Windows.Forms.DateTimePicker startDate;
+								private System.Windows.Forms.Label startDateLabel;
+								private System.Windows.Forms.Label positionLabel;
+								private System.Windows.Forms.RadioButton contractRadioButton;
+								private System.Windows.Forms.RadioButton nominationRadioButton;
+								private System.Windows.Forms.ComboBox forPeriod;
+								private System.Windows.Forms.TextBox position;
+								private System.Windows.Forms.GroupBox employmentBaseGroupBox;
+								private System.Windows.Forms.OpenFileDialog openFileDialog;
 				}
 }
 
