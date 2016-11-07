@@ -1,6 +1,6 @@
 ﻿namespace DC
 {
-				partial class mainWindow
+				partial class MainWindow
 				{
 								/// <summary>
 								/// Required designer variable.
@@ -94,6 +94,8 @@
 												this.date = new System.Windows.Forms.DateTimePicker();
 												this.dateLabel = new System.Windows.Forms.Label();
 												this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+												this.organizationalUnit = new System.Windows.Forms.TextBox();
+												this.organizationalUnitLabel = new System.Windows.Forms.Label();
 												this.applicationTabControl.SuspendLayout();
 												this.candidateData.SuspendLayout();
 												this.addressGroupBox.SuspendLayout();
@@ -487,6 +489,7 @@
 												// achievementsList
 												// 
 												this.achievementsList.FormattingEnabled = true;
+												this.achievementsList.HorizontalScrollbar = true;
 												this.achievementsList.Location = new System.Drawing.Point(12, 44);
 												this.achievementsList.Name = "achievementsList";
 												this.achievementsList.Size = new System.Drawing.Size(394, 199);
@@ -703,9 +706,9 @@
 												// 
 												// date
 												// 
-												this.date.Location = new System.Drawing.Point(72, 12);
+												this.date.Location = new System.Drawing.Point(48, 11);
 												this.date.Name = "date";
-												this.date.Size = new System.Drawing.Size(147, 20);
+												this.date.Size = new System.Drawing.Size(138, 20);
 												this.date.TabIndex = 4;
 												// 
 												// dateLabel
@@ -721,17 +724,35 @@
 												// 
 												this.openFileDialog.FileName = "openFileDialog1";
 												// 
-												// mainWindow
+												// organizationalUnit
+												// 
+												this.organizationalUnit.Location = new System.Drawing.Point(322, 11);
+												this.organizationalUnit.Name = "organizationalUnit";
+												this.organizationalUnit.Size = new System.Drawing.Size(114, 20);
+												this.organizationalUnit.TabIndex = 6;
+												// 
+												// organizationalUnitLabel
+												// 
+												this.organizationalUnitLabel.AutoSize = true;
+												this.organizationalUnitLabel.Location = new System.Drawing.Point(193, 17);
+												this.organizationalUnitLabel.Name = "organizationalUnitLabel";
+												this.organizationalUnitLabel.Size = new System.Drawing.Size(127, 13);
+												this.organizationalUnitLabel.TabIndex = 7;
+												this.organizationalUnitLabel.Text = "Jednostka organizacyjna:";
+												// 
+												// MainWindow
 												// 
 												this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 												this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 												this.ClientSize = new System.Drawing.Size(448, 357);
+												this.Controls.Add(this.organizationalUnitLabel);
+												this.Controls.Add(this.organizationalUnit);
 												this.Controls.Add(this.dateLabel);
 												this.Controls.Add(this.date);
 												this.Controls.Add(this.loadXml);
 												this.Controls.Add(this.walidateAndSave);
 												this.Controls.Add(this.applicationTabControl);
-												this.Name = "mainWindow";
+												this.Name = "MainWindow";
 												this.Text = "Wniosek";
 												this.applicationTabControl.ResumeLayout(false);
 												this.candidateData.ResumeLayout(false);
@@ -823,6 +844,8 @@
 								private System.Windows.Forms.TextBox position;
 								private System.Windows.Forms.GroupBox employmentBaseGroupBox;
 								private System.Windows.Forms.OpenFileDialog openFileDialog;
+								private System.Windows.Forms.TextBox organizationalUnit;
+								private System.Windows.Forms.Label organizationalUnitLabel;
 				}
 }
 
