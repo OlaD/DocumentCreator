@@ -1,0 +1,167 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:element name="wniosek" type="Wniosek"/>
+	
+	<xsd:complexType name="Wniosek">
+		<xsd:sequence>
+			<xsd:element name="jednostka_organizacyjna" type="xsd:string"/>
+			<xsd:element name="kandydat" type="Kandydat"/>
+			<xsd:element name="zatrudnienie" type="Zatrudnienie"/>
+		</xsd:sequence>
+		<xsd:attribute name="data_zlozenia" type="xsd:date"/>
+	</xsd:complexType>
+	
+	<xsd:complexType name="Kandydat">
+		<xsd:sequence>
+			<xsd:element name="dane_kandydata" type="Dane"/>
+			<xsd:element name="ukonczona_uczelnia" type="Uczelnia"/>
+			<xsd:element name="uzyskane_tytuly" type="Tytuly"/>
+			<xsd:element name="przebieg_pracy" type="Przebieg_Pracy" minOccurs="0"/>
+			<xsd:element name="osiagniecia" type="Osiagniecia" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="Dane">
+		<xsd:sequence>
+			<xsd:element name="imie" type="imie_type"/>
+			<xsd:element name="nazwisko" type="nazwisko_type"/>
+			<xsd:element name="adres" type="Adres"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:simpleType name="imie_type">
+      <xsd:restriction base="xsd:string">
+        <xsd:pattern value="([A-Z]|Ć|Ł|Ó|Ś|Ż|Ź)([a-z]|ą|ć|ę|ł|ń|ó|ś|ż|ź)*"/>
+		<xsd:maxLength value="20"/>
+      </xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="nazwisko_type">
+      <xsd:restriction base="xsd:string">
+        <xsd:pattern value="([A-Z]|Ć|Ł|Ó|Ś|Ż|Ź)([a-z]|ą|ć|ę|ł|ń|ó|ś|ż|ź)*([\-]([A-Z]|Ć|Ł|Ó|Ś|Ż|Ź)([a-z]|ą|ć|ę|ł|ń|ó|ś|ż|ź)*)*"/>
+		<xsd:maxLength value="50"/>
+      </xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:complexType name="Adres">
+      <xsd:sequence>
+			<xsd:element name="miejscowosc" type="miejscowosc_type"/>
+			<xsd:element name="ulica" type="xsd:string"/>
+			<xsd:element name="nr_domu" type="xsd:string"/>
+			<xsd:element name="nr_mieszkania" type="xsd:string" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="kod_pocztowy" type="kod_pocztowy_type"/>
+      </xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:simpleType name="miejscowosc_type">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([A-Z]|Ć|Ł|Ó|Ś|Ż|Ź)\D*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="kod_pocztowy_type">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\d{2}-\d{3}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:complexType name="Uczelnia">
+		<xsd:sequence>
+			<xsd:element name="nazwa_uczelni" type="xsd:string"/>
+			<xsd:element name="nazwa_wydzialu" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="Tytuly">
+		<xsd:sequence>
+			<xsd:element name="tytul_zawodowy" type="Tytul_Zawodowy"/>
+			<xsd:element name="stopien_naukowy" type="Stopien_Naukowy" minOccurs="0" maxOccurs="2"/>
+			<xsd:element name="tytul_naukowy" type="Tytul_Naukowy" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="data_uzyskania" type="xsd:gYear"/>
+	
+	<xsd:complexType name="Tytul_Zawodowy">
+		<xsd:sequence>
+			<xsd:element ref="data_uzyskania" />
+		</xsd:sequence>
+		<xsd:attribute name="jaki" type="tytul_zawodowy_type"/>
+	</xsd:complexType>
+	
+	<xsd:simpleType name="tytul_zawodowy_type">
+      <xsd:restriction base="xsd:string">
+        <xsd:pattern value="mgr|mgr inz."/>
+      </xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:complexType name="Stopien_Naukowy">
+		<xsd:sequence>
+			<xsd:element ref="data_uzyskania" />
+		</xsd:sequence>
+		<xsd:attribute name="jaki" type="stopien_naukowy_type"/>
+	</xsd:complexType>
+	
+	<xsd:simpleType name="stopien_naukowy_type">
+      <xsd:restriction base="xsd:string">
+        <xsd:pattern value="dr|dr hab."/>
+      </xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:complexType name="Tytul_Naukowy">
+		<xsd:sequence>
+			<xsd:element ref="data_uzyskania" />
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="Przebieg_Pracy">
+		<xsd:sequence>
+			<xsd:element name="praca" type="Praca" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="Praca">
+		<xsd:sequence>
+			<xsd:element name="rok_rozpoczecia" type="xsd:gYear" />
+			<xsd:element name="rok_zakonczenia" type="xsd:gYear" />
+			<xsd:element name="miejsce" type="xsd:string" />
+			<xsd:element name="stanowisko" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="Osiagniecia">
+		<xsd:sequence>
+			<xsd:element name="osiagniecie" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="Zatrudnienie">
+		<xsd:sequence>
+			<xsd:element name="stanowisko" type="xsd:string" />
+			<xsd:element name="od_dnia" type="xsd:date" />
+			<xsd:element name="czas_zatrudnienia" type="Czas_Zatrudnienia" />
+			<xsd:element name="wymiar_etatu" type="wymiar_etatu_type" />
+		</xsd:sequence>
+		<xsd:attribute name="podstawa" type="podstawa_type" />
+	</xsd:complexType>
+	
+	<xsd:simpleType name="podstawa_type">
+      <xsd:restriction base="xsd:string">
+        <xsd:pattern value="mianowanie|umowa o prace" />
+      </xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:complexType name="Czas_Zatrudnienia">
+		<xsd:sequence>
+			<xsd:element name="do_dnia" type="xsd:date" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="okreslony" type="xsd:boolean" />
+	</xsd:complexType>
+
+	<xsd:simpleType name="wymiar_etatu_type">
+      <xsd:restriction base="xsd:string">
+        <xsd:pattern value="pelny|(\d+[/]\d+)" />
+      </xsd:restriction>
+	</xsd:simpleType>
+	
+</xsd:schema>

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace DC
 {
@@ -388,46 +390,17 @@ namespace DC
 								private void walidateAndSave_Click(object sender, EventArgs e)
 								{
 												Wniosek document = loadDataFromFields();
-												MessageBox.Show("Zapisano", document.kandydat.dane_kandydata.imie);
-												// zapisz dane z kontrolek do klasy
-																// stwórz nową klasę wniosku (i wszystkie podrzędne...)
-												//	serializuj klasę do pliku xml
-												// waliduj plik xml
-												// zapisz plik xml			
+												Serializer<Wniosek> serializer = new Serializer<Wniosek>();
+												XmlDocument xml = serializer.loadToXML(document);
 
-												/* MemoryStream ms = new MemoryStream(); //creating a stream for storing XML file with modified data
+												Validator validator = new Validator();
+												bool isCorrect = validator.Validate(xml);
 
-            XmlWriter writer = XmlWriter.Create(ms); //creating writer for writing XML file to stream
-            xmlser.Serialize(writer, zamowienie1);
-
-            XmlReaderSettings xrset = new XmlReaderSettings(); //definition of XML reader settings
-            xrset.ValidationType = ValidationType.Schema; //validation based on XML Schema
-            ms.Position = 0; //setting the pointer on beginning of memory stream
-            XmlReader reader = XmlReader.Create(ms,xrset); //creating a reader for reading XML from memory stream
-
-            XmlDocument xdoc = new XmlDocument(); //creating an XML document
-            xdoc.Load(reader); //loading document from memory stream
-            xdoc.Schemas.Add(null, @"zamowienie.xsd"); //connecting the XML document with schema from "zamowienie.xsd"
-            ValidationEventHandler eventHandler = new ValidationEventHandler(ValidationEventCallback); //setting the event handler for handling incorrect validation events
-            XMLValid = true; //setting the default value of XML validity flag for true
-            xdoc.Validate(eventHandler); //performing validation
-            
-           //Writing the memory stream to a file "zamowienie_mod.xml" if the document is valid
-            if (XMLValid)
-            {
-                FileStream fs = new FileStream("zamowienie_mod.xml", FileMode.Create);
-                ms.Position = 0;
-                ms.CopyTo(fs);
-                fs.Close();
-                //toolStripStatusLabel2.Text = "XML valid - marshalling to \"zamowienie_mod.xml\" file";
-                toolStripStatusLabel2.Text = "Walidacja XML pomyślna - dane zapisano do pliku \"zamowienie_mod.xml\"";
-            }
-            else
-            {
-                //toolStripStatusLabel2.Text = "XML invalid";
-                toolStripStatusLabel2.Text = "Nieprawidłowe dane dokumentu";
-            }
-            ms.Close();*/
+												if(isCorrect)
+												{
+																saveXML(xml, document);
+																MessageBox.Show("Zapisano");
+												}
 								}
 
 								private Wniosek loadDataFromFields()
@@ -491,6 +464,7 @@ namespace DC
 																				job.miejsce = row[1];
 																				job.rok_rozpoczecia = row[2];
 																				job.rok_zakonczenia = row[3];
+																				jobs.Add(job);
 																}
 																document.kandydat.przebieg_pracy = jobs.ToArray();
 												}
@@ -529,6 +503,15 @@ namespace DC
 												}
 
 												return document;
+								}
+
+								private void saveXML(XmlDocument xml, Wniosek document)
+								{
+												string path = "wniosek"
+																								+ document.kandydat.dane_kandydata.imie
+																								+ document.kandydat.dane_kandydata.nazwisko
+																								+ "_mod.xml";
+												xml.Save(path);
 								}
 				}
 }
