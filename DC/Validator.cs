@@ -32,7 +32,7 @@ namespace DC
 								{
 												ValidationEventHandler eventHandler = new ValidationEventHandler(validationNodeEvent);
 												StringBuilder message = new StringBuilder();
-												message.AppendLine("Błędy:");
+												message.AppendLine("Błędne pola:\n");
 												foreach (Fields.Field field in Enum.GetValues(typeof(Fields.Field)))
 												{
 																nodeNotValid = false;

@@ -129,8 +129,8 @@ namespace DC
 																facultyName.Text = value;
 												}
 								}
-								public List<string[]> Titles { get; }
-								public List<string[]> ExJobs { get; }
+								public ListViewTable Titles { get; }
+								public ListViewTable ExJobs { get; }
 								public List<string> Achievements { get; }
 								public string Position
 								{
@@ -389,6 +389,8 @@ namespace DC
 
 								private void walidateAndSave_Click(object sender, EventArgs e)
 								{
+												test();
+												
 												Wniosek document = loadDataFromFields();
 												Serializer<Wniosek> serializer = new Serializer<Wniosek>();
 												XmlDocument xml = serializer.loadToXML(document);
@@ -396,11 +398,11 @@ namespace DC
 												Validator validator = new Validator();
 												bool isCorrect = validator.Validate(xml);
 
-												if(isCorrect)
+												if (isCorrect)
 												{
 																saveXML(xml, document);
 																MessageBox.Show("Zapisano");
-												}
+												};
 								}
 
 								private Wniosek loadDataFromFields()
@@ -512,6 +514,11 @@ namespace DC
 																								+ document.kandydat.dane_kandydata.nazwisko
 																								+ "_mod.xml";
 												xml.Save(path);
+								}
+
+								private void test()
+								{
+												
 								}
 				}
 }
