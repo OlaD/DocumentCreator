@@ -19,8 +19,7 @@ namespace DC
 												xml.Schemas.Add(null, "schema.xsd");
 
 												ValidateSingleNodes(xml);
-												// jeśli walidacja pojedynczych węzłów nic nie wykryje,
-												// dla pewności przeprowadzamy walidację całego dokumentu
+												// jeśli walidacja pojedynczych węzłów nic nie wykryje, dla pewności przeprowadzamy walidację całego dokumentu
 												if(xmlValid)
 												{
 																ValidateAll(xml);
@@ -44,7 +43,10 @@ namespace DC
 																				message.AppendLine(Fields.fieldsMessages[field]);
 																}
 												}
-												MessageBox.Show(message.ToString(), "Błąd", MessageBoxButtons.OK);
+												if(!xmlValid)
+												{
+																MessageBox.Show(message.ToString(), "Błąd", MessageBoxButtons.OK);
+												}
 								}
 
 								void validationNodeEvent(object sender, ValidationEventArgs e)
