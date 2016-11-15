@@ -15,14 +15,26 @@ namespace DC
 
 								public bool Validate(XmlDocument xml)
 								{
-												xml.Schemas.Add(null, "schema.xsd");
-												ValidationEventHandler eventHandler = new ValidationEventHandler(ValidationEventCallback);
-
 												xmlValid = true;
+												xml.Schemas.Add(null, "schema.xsd");
 
+												ValidateSingleNodes(xml);
+												// jeśli walidacja pojedynczych węzłów nic nie wykryje,
+												// dla pewności przeprowadzamy walidację całego dokumentu
+												if(xmlValid)
+												{
+																ValidateAll(xml);
+												}
+
+												return xmlValid;
+								}
+
+								void ValidateSingleNodes(XmlDocument xml)
+								{
+												ValidationEventHandler eventHandler = new ValidationEventHandler(validationNodeEvent);
 												StringBuilder message = new StringBuilder();
 												message.AppendLine("Błędy:");
-												foreach ( Fields.Field field in Enum.GetValues(typeof(Fields.Field)) )
+												foreach (Fields.Field field in Enum.GetValues(typeof(Fields.Field)))
 												{
 																nodeNotValid = false;
 																XmlNode node = xml.SelectSingleNode(Fields.fieldsPaths[field]);
@@ -33,14 +45,24 @@ namespace DC
 																}
 												}
 												MessageBox.Show(message.ToString(), "Błąd", MessageBoxButtons.OK);
-
-												return xmlValid;
 								}
 
-								void ValidationEventCallback(object sender, ValidationEventArgs e)
+								void validationNodeEvent(object sender, ValidationEventArgs e)
 								{
 												xmlValid = false;
 												nodeNotValid = true;
+								}
+
+								void ValidateAll(XmlDocument xml)
+								{
+												ValidationEventHandler eventHandler = new ValidationEventHandler(validationAllEvent);
+												xml.Validate(eventHandler);
+								}
+
+								void validationAllEvent(object sender, ValidationEventArgs e)
+								{
+												xmlValid = false;
+												MessageBox.Show(e.Message, "Błąd", MessageBoxButtons.OK);
 								}
 				}
 }
