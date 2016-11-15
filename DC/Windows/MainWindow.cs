@@ -198,51 +198,11 @@ namespace DC
 												}
 								}
 
-								public void AddTitle(string titleType, string title, string obtainedYear)
-								{
-												string[] row = new string[3];
-												row[0] = titleType;
-												row[1] = title;
-												row[2] = obtainedYear;
-												Titles.Add(row);
-												AddToListView(row, titlesTable);
-								}
-
-								private void AddToListView(string[] row, ListView listView)
-								{
-												ListViewItem item = new ListViewItem(row);
-												listView.Items.Add(item);
-								}
-
-								public void AddExJob(string position, string place, string startYear, string endYear)
-								{
-												string[] row = new string[4];
-												row[0] = position;
-												row[1] = place;
-												row[2] = startYear;
-												row[3] = endYear;
-												ExJobs.Add(row);
-												AddToListView(row, exJobsTable);
-								}
-
 								public void AddAchievement(string achievement)
 								{
 												Achievements.Add(achievement);
 												achievementsList.Items.Add(achievement);
 								}
-
-								public void ClearTitles()
-								{
-												Titles.Clear();
-												titlesTable.Items.Clear();
-								}
-
-								public void ClearExJobs()
-								{
-												ExJobs.Clear();
-												exJobsTable.Items.Clear();
-								}
-
 								public void ClearAchievements()
 								{
 												Achievements.Clear();
@@ -257,8 +217,8 @@ namespace DC
 												IsFullWorkTime = true;
 												IsContract = true;
 
-												Titles = new List<string[]>();
-												ExJobs = new List<string[]>();
+												Titles = new ListViewTable(titlesTable);
+												ExJobs = new ListViewTable(exJobsTable);
 												Achievements = new List<string>();
 								}
 
@@ -292,21 +252,21 @@ namespace DC
 												FacultyName = academy.nazwa_wydzialu;
 
 												Tytuly titles = document.kandydat.uzyskane_tytuly;
-												ClearTitles();
+												
 												if (titles.tytul_zawodowy != null)
 												{
-																AddTitle("tytuł zawodowy", titles.tytul_zawodowy.jaki, titles.tytul_zawodowy.data_uzyskania);
+																Titles.Add(new string[] { "tytuł zawodowy", titles.tytul_zawodowy.jaki, titles.tytul_zawodowy.data_uzyskania });
 												}
 												if (titles.stopien_naukowy != null)
 												{
 																foreach (Stopien_Naukowy degree in titles.stopien_naukowy)
 																{
-																				AddTitle("stopień naukowy", degree.jaki, degree.data_uzyskania);
+																				Titles.Add(new string[] { "stopień naukowy", degree.jaki, degree.data_uzyskania });
 																}
 												}
 												if (titles.tytul_naukowy != null)
 												{
-																AddTitle("tytuł naukowy", "prof.", titles.tytul_naukowy.data_uzyskania);
+																Titles.Add(new string[] { "tytuł naukowy", "prof.", titles.tytul_naukowy.data_uzyskania });
 												}
 
 												Praca[] jobs = document.kandydat.przebieg_pracy;
@@ -314,7 +274,7 @@ namespace DC
 												{
 																foreach(Praca job in jobs)
 																{
-																				AddExJob(job.stanowisko, job.miejsce, job.rok_rozpoczecia, job.rok_zakonczenia);
+																				ExJobs.Add(new string[] { job.stanowisko, job.miejsce, job.rok_rozpoczecia, job.rok_zakonczenia });
 																}
 												}
 
@@ -429,7 +389,7 @@ namespace DC
 												{
 																document.kandydat.uzyskane_tytuly = new Tytuly();
 																List<Stopien_Naukowy> degrees = new List<Stopien_Naukowy>();
-																foreach(string[] title in Titles)
+																foreach(string[] title in Titles.GetAllRows())
 																{
 																				switch(title[0])
 																				{
@@ -459,7 +419,7 @@ namespace DC
 												if(ExJobs.Count != 0)
 												{
 																List<Praca> jobs = new List<Praca>();
-																foreach(string[] row in ExJobs)
+																foreach (string[] row in ExJobs.GetAllRows())
 																{
 																				Praca job = new Praca();
 																				job.stanowisko = row[0];
@@ -519,6 +479,55 @@ namespace DC
 								private void test()
 								{
 												
+								}
+
+								private void titlesTable_SelectedIndexChanged(object sender, EventArgs e)
+								{
+												editTitle.Enabled = true;
+												removeTitle.Enabled = true;
+								}
+
+								private void achievementsList_SelectedIndexChanged(object sender, EventArgs e)
+								{
+												editAchievement.Enabled = true;
+												removeAchievement.Enabled = true;
+								}
+
+								private void exJobsTable_SelectedIndexChanged(object sender, EventArgs e)
+								{
+												exJobEdit.Enabled = true;
+												exJobRemove.Enabled = true;
+								}
+
+								private void addTitle_Click(object sender, EventArgs e)
+								{
+												using (TitleWindow window = new TitleWindow(TitleWindow.Operation.Add))
+												{
+																var result = window.ShowDialog();
+																if(result == DialogResult.OK)
+																{
+																				string[] row = window.Values;
+																				Titles.Add(row);
+																}
+												}
+								}
+
+								private void editTitle_Click(object sender, EventArgs e)
+								{
+												using (TitleWindow window = new TitleWindow(TitleWindow.Operation.Edit, Titles.GetSelectedRow()))
+												{
+																var result = window.ShowDialog();
+																if (result == DialogResult.OK)
+																{
+																				string[] editedValues = window.Values;
+																				Titles.EditSelectedRow(editedValues);
+																}
+												}
+								}
+
+								private void removeTitle_Click(object sender, EventArgs e)
+								{
+												Titles.RemoveSelected();
 								}
 				}
 }

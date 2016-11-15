@@ -295,21 +295,25 @@
 												// 
 												// editTitle
 												// 
+												this.editTitle.Enabled = false;
 												this.editTitle.Location = new System.Drawing.Point(180, 18);
 												this.editTitle.Name = "editTitle";
 												this.editTitle.Size = new System.Drawing.Size(99, 23);
 												this.editTitle.TabIndex = 6;
 												this.editTitle.Text = "Edytuj";
 												this.editTitle.UseVisualStyleBackColor = true;
+												this.editTitle.Click += new System.EventHandler(this.editTitle_Click);
 												// 
 												// removeTitle
 												// 
+												this.removeTitle.Enabled = false;
 												this.removeTitle.Location = new System.Drawing.Point(285, 18);
 												this.removeTitle.Name = "removeTitle";
 												this.removeTitle.Size = new System.Drawing.Size(99, 23);
 												this.removeTitle.TabIndex = 5;
 												this.removeTitle.Text = "Usuń";
 												this.removeTitle.UseVisualStyleBackColor = true;
+												this.removeTitle.Click += new System.EventHandler(this.removeTitle_Click);
 												// 
 												// addTitle
 												// 
@@ -319,6 +323,7 @@
 												this.addTitle.TabIndex = 4;
 												this.addTitle.Text = "Dodaj";
 												this.addTitle.UseVisualStyleBackColor = true;
+												this.addTitle.Click += new System.EventHandler(this.addTitle_Click);
 												// 
 												// titlesTable
 												// 
@@ -335,6 +340,7 @@
 												this.titlesTable.TabIndex = 3;
 												this.titlesTable.UseCompatibleStateImageBehavior = false;
 												this.titlesTable.View = System.Windows.Forms.View.Details;
+												this.titlesTable.SelectedIndexChanged += new System.EventHandler(this.titlesTable_SelectedIndexChanged);
 												// 
 												// titleType
 												// 
@@ -425,6 +431,7 @@
 												this.exJobsTable.TabIndex = 3;
 												this.exJobsTable.UseCompatibleStateImageBehavior = false;
 												this.exJobsTable.View = System.Windows.Forms.View.Details;
+												this.exJobsTable.SelectedIndexChanged += new System.EventHandler(this.exJobsTable_SelectedIndexChanged);
 												// 
 												// exJobPosition
 												// 
@@ -448,6 +455,7 @@
 												// 
 												// exJobRemove
 												// 
+												this.exJobRemove.Enabled = false;
 												this.exJobRemove.Location = new System.Drawing.Point(304, 12);
 												this.exJobRemove.Name = "exJobRemove";
 												this.exJobRemove.Size = new System.Drawing.Size(99, 23);
@@ -457,6 +465,7 @@
 												// 
 												// exJobEdit
 												// 
+												this.exJobEdit.Enabled = false;
 												this.exJobEdit.Location = new System.Drawing.Point(199, 12);
 												this.exJobEdit.Name = "exJobEdit";
 												this.exJobEdit.Size = new System.Drawing.Size(99, 23);
@@ -494,9 +503,11 @@
 												this.achievementsList.Name = "achievementsList";
 												this.achievementsList.Size = new System.Drawing.Size(394, 199);
 												this.achievementsList.TabIndex = 11;
+												this.achievementsList.SelectedIndexChanged += new System.EventHandler(this.achievementsList_SelectedIndexChanged);
 												// 
 												// removeAchievement
 												// 
+												this.removeAchievement.Enabled = false;
 												this.removeAchievement.Location = new System.Drawing.Point(307, 14);
 												this.removeAchievement.Name = "removeAchievement";
 												this.removeAchievement.Size = new System.Drawing.Size(99, 23);
@@ -506,6 +517,7 @@
 												// 
 												// editAchievement
 												// 
+												this.editAchievement.Enabled = false;
 												this.editAchievement.Location = new System.Drawing.Point(202, 14);
 												this.editAchievement.Name = "editAchievement";
 												this.editAchievement.Size = new System.Drawing.Size(99, 23);

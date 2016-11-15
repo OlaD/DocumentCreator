@@ -7,6 +7,14 @@ namespace DC
 				public class ListViewTable
 				{
 								ListView table;
+								public int Count
+								{
+												get { return table.Items.Count; }
+								}
+								public int SelectedIndex
+								{
+												get { return table.SelectedItems[0].Index; }
+								}
 
 								public ListViewTable(ListView table)
 								{
@@ -18,6 +26,11 @@ namespace DC
 												ListViewItem item = new ListViewItem(row);
 												item.Name = (table.Items.Count + 1).ToString();
 												table.Items.Add(item);
+								}
+
+								public void RemoveSelected()
+								{
+												Remove(SelectedIndex);
 								}
 
 								public void Remove(int index)
@@ -32,8 +45,7 @@ namespace DC
 
 								public string[] GetSelectedRow()
 								{
-												int index = table.SelectedItems[0].Index;
-												string[] row = GetRow(index);
+												string[] row = GetRow(SelectedIndex);
 												return row;
 								}
 
@@ -44,7 +56,7 @@ namespace DC
 												string[] row = new string[count];
 												for (int i = 0; i < count; i++)
 												{
-																row[i] = item.SubItems[i].ToString();
+																row[i] = item.SubItems[i].Text;
 												}
 												return row;
 								}
