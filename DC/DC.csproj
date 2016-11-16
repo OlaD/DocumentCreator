@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ListBoxTable.cs" />
     <Compile Include="Windows\AchievementWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +78,12 @@
     </Compile>
     <Compile Include="Validator.cs" />
     <Compile Include="Wniosek.cs" />
+    <EmbeddedResource Include="Windows\AchievementWindow.resx">
+      <DependentUpon>AchievementWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\ExJobWindow.resx">
+      <DependentUpon>ExJobWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Windows\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>

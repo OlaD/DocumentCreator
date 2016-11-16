@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-using System.Collections;
+using System;
 using System.Collections.Generic;
 
 namespace DC
@@ -13,7 +13,17 @@ namespace DC
 								}
 								public int SelectedIndex
 								{
-												get { return table.SelectedItems[0].Index; }
+												get 
+												{ 
+																if (table.SelectedIndices.Count == 0)
+																{
+																				return -1;
+																}
+																else
+																{
+																				return table.SelectedIndices[0];
+																}
+												}
 								}
 
 								public ListViewTable(ListView table)
@@ -24,7 +34,6 @@ namespace DC
 								public void Add(string[] row)
 								{
 												ListViewItem item = new ListViewItem(row);
-												item.Name = (table.Items.Count + 1).ToString();
 												table.Items.Add(item);
 								}
 

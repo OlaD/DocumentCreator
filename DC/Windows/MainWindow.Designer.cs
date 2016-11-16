@@ -65,9 +65,9 @@
 												this.exJobPlace = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 												this.exJobStartYear = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 												this.exJobEndYear = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-												this.exJobRemove = new System.Windows.Forms.Button();
-												this.exJobEdit = new System.Windows.Forms.Button();
-												this.exJobAdd = new System.Windows.Forms.Button();
+												this.removeExJob = new System.Windows.Forms.Button();
+												this.editExJob = new System.Windows.Forms.Button();
+												this.addExJob = new System.Windows.Forms.Button();
 												this.achievements = new System.Windows.Forms.TabPage();
 												this.achievementsList = new System.Windows.Forms.ListBox();
 												this.removeAchievement = new System.Windows.Forms.Button();
@@ -405,9 +405,9 @@
 												// jobs
 												// 
 												this.jobs.Controls.Add(this.exJobsTable);
-												this.jobs.Controls.Add(this.exJobRemove);
-												this.jobs.Controls.Add(this.exJobEdit);
-												this.jobs.Controls.Add(this.exJobAdd);
+												this.jobs.Controls.Add(this.removeExJob);
+												this.jobs.Controls.Add(this.editExJob);
+												this.jobs.Controls.Add(this.addExJob);
 												this.jobs.Location = new System.Drawing.Point(4, 22);
 												this.jobs.Name = "jobs";
 												this.jobs.Size = new System.Drawing.Size(419, 254);
@@ -453,34 +453,37 @@
 												this.exJobEndYear.Text = "do";
 												this.exJobEndYear.Width = 41;
 												// 
-												// exJobRemove
+												// removeExJob
 												// 
-												this.exJobRemove.Enabled = false;
-												this.exJobRemove.Location = new System.Drawing.Point(304, 12);
-												this.exJobRemove.Name = "exJobRemove";
-												this.exJobRemove.Size = new System.Drawing.Size(99, 23);
-												this.exJobRemove.TabIndex = 5;
-												this.exJobRemove.Text = "Usuń";
-												this.exJobRemove.UseVisualStyleBackColor = true;
+												this.removeExJob.Enabled = false;
+												this.removeExJob.Location = new System.Drawing.Point(304, 12);
+												this.removeExJob.Name = "removeExJob";
+												this.removeExJob.Size = new System.Drawing.Size(99, 23);
+												this.removeExJob.TabIndex = 5;
+												this.removeExJob.Text = "Usuń";
+												this.removeExJob.UseVisualStyleBackColor = true;
+												this.removeExJob.Click += new System.EventHandler(this.exJobRemove_Click);
 												// 
-												// exJobEdit
+												// editExJob
 												// 
-												this.exJobEdit.Enabled = false;
-												this.exJobEdit.Location = new System.Drawing.Point(199, 12);
-												this.exJobEdit.Name = "exJobEdit";
-												this.exJobEdit.Size = new System.Drawing.Size(99, 23);
-												this.exJobEdit.TabIndex = 6;
-												this.exJobEdit.Text = "Edytuj";
-												this.exJobEdit.UseVisualStyleBackColor = true;
+												this.editExJob.Enabled = false;
+												this.editExJob.Location = new System.Drawing.Point(199, 12);
+												this.editExJob.Name = "editExJob";
+												this.editExJob.Size = new System.Drawing.Size(99, 23);
+												this.editExJob.TabIndex = 6;
+												this.editExJob.Text = "Edytuj";
+												this.editExJob.UseVisualStyleBackColor = true;
+												this.editExJob.Click += new System.EventHandler(this.exJobEdit_Click);
 												// 
-												// exJobAdd
+												// addExJob
 												// 
-												this.exJobAdd.Location = new System.Drawing.Point(9, 12);
-												this.exJobAdd.Name = "exJobAdd";
-												this.exJobAdd.Size = new System.Drawing.Size(184, 23);
-												this.exJobAdd.TabIndex = 4;
-												this.exJobAdd.Text = "Dodaj";
-												this.exJobAdd.UseVisualStyleBackColor = true;
+												this.addExJob.Location = new System.Drawing.Point(9, 12);
+												this.addExJob.Name = "addExJob";
+												this.addExJob.Size = new System.Drawing.Size(184, 23);
+												this.addExJob.TabIndex = 4;
+												this.addExJob.Text = "Dodaj";
+												this.addExJob.UseVisualStyleBackColor = true;
+												this.addExJob.Click += new System.EventHandler(this.exJobAdd_Click);
 												// 
 												// achievements
 												// 
@@ -514,6 +517,7 @@
 												this.removeAchievement.TabIndex = 9;
 												this.removeAchievement.Text = "Usuń";
 												this.removeAchievement.UseVisualStyleBackColor = true;
+												this.removeAchievement.Click += new System.EventHandler(this.removeAchievement_Click);
 												// 
 												// editAchievement
 												// 
@@ -524,6 +528,7 @@
 												this.editAchievement.TabIndex = 10;
 												this.editAchievement.Text = "Edytuj";
 												this.editAchievement.UseVisualStyleBackColor = true;
+												this.editAchievement.Click += new System.EventHandler(this.editAchievement_Click);
 												// 
 												// addAchievement
 												// 
@@ -533,6 +538,7 @@
 												this.addAchievement.TabIndex = 8;
 												this.addAchievement.Text = "Dodaj";
 												this.addAchievement.UseVisualStyleBackColor = true;
+												this.addAchievement.Click += new System.EventHandler(this.addAchievement_Click);
 												// 
 												// employment
 												// 
@@ -833,9 +839,9 @@
 								private System.Windows.Forms.ColumnHeader exJobPlace;
 								private System.Windows.Forms.ColumnHeader exJobStartYear;
 								private System.Windows.Forms.ColumnHeader exJobEndYear;
-								private System.Windows.Forms.Button exJobRemove;
-								private System.Windows.Forms.Button exJobEdit;
-								private System.Windows.Forms.Button exJobAdd;
+								private System.Windows.Forms.Button removeExJob;
+								private System.Windows.Forms.Button editExJob;
+								private System.Windows.Forms.Button addExJob;
 								private System.Windows.Forms.ListBox achievementsList;
 								private System.Windows.Forms.Button removeAchievement;
 								private System.Windows.Forms.Button editAchievement;

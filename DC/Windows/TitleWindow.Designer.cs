@@ -43,7 +43,7 @@
 												this.save.Location = new System.Drawing.Point(12, 106);
 												this.save.Name = "save";
 												this.save.Size = new System.Drawing.Size(100, 23);
-												this.save.TabIndex = 0;
+												this.save.TabIndex = 3;
 												this.save.Text = "Zapisz";
 												this.save.UseVisualStyleBackColor = true;
 												this.save.Click += new System.EventHandler(this.save_Click);
@@ -55,7 +55,7 @@
 												this.name.Location = new System.Drawing.Point(100, 43);
 												this.name.Name = "name";
 												this.name.Size = new System.Drawing.Size(121, 21);
-												this.name.TabIndex = 4;
+												this.name.TabIndex = 1;
 												// 
 												// titleLabel
 												// 
@@ -95,7 +95,7 @@
 												this.title.Location = new System.Drawing.Point(100, 16);
 												this.title.Name = "title";
 												this.title.Size = new System.Drawing.Size(121, 21);
-												this.title.TabIndex = 8;
+												this.title.TabIndex = 0;
 												this.title.SelectedIndexChanged += new System.EventHandler(this.title_SelectedIndexChanged);
 												// 
 												// cancel
@@ -103,7 +103,7 @@
 												this.cancel.Location = new System.Drawing.Point(121, 106);
 												this.cancel.Name = "cancel";
 												this.cancel.Size = new System.Drawing.Size(100, 23);
-												this.cancel.TabIndex = 9;
+												this.cancel.TabIndex = 4;
 												this.cancel.Text = "Anuluj";
 												this.cancel.UseVisualStyleBackColor = true;
 												// 
@@ -112,7 +112,7 @@
 												this.year.Location = new System.Drawing.Point(100, 70);
 												this.year.Name = "year";
 												this.year.Size = new System.Drawing.Size(121, 20);
-												this.year.TabIndex = 3;
+												this.year.TabIndex = 2;
 												// 
 												// TitleWindow
 												// 

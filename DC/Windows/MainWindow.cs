@@ -131,7 +131,7 @@ namespace DC
 								}
 								public ListViewTable Titles { get; }
 								public ListViewTable ExJobs { get; }
-								public List<string> Achievements { get; }
+								public ListBoxTable Achievements { get; }
 								public string Position
 								{
 												get { return position.Text; }
@@ -198,17 +198,6 @@ namespace DC
 												}
 								}
 
-								public void AddAchievement(string achievement)
-								{
-												Achievements.Add(achievement);
-												achievementsList.Items.Add(achievement);
-								}
-								public void ClearAchievements()
-								{
-												Achievements.Clear();
-												achievementsList.Items.Clear();
-								}
-
 								public MainWindow()
 								{
 												InitializeComponent();
@@ -219,7 +208,7 @@ namespace DC
 
 												Titles = new ListViewTable(titlesTable);
 												ExJobs = new ListViewTable(exJobsTable);
-												Achievements = new List<string>();
+												Achievements = new ListBoxTable(achievementsList);
 								}
 
 								private void loadXml_Click(object sender, EventArgs e)
@@ -234,6 +223,10 @@ namespace DC
 
 								private void fillFields(Wniosek document)
 								{
+												Titles.Clear();
+												ExJobs.Clear();
+												Achievements.Clear();
+
 												Date = document.data_zlozenia;
 												OrganizationalUnit = document.jednostka_organizacyjna;
 
@@ -282,7 +275,7 @@ namespace DC
 												{
 																foreach(string achievement in document.kandydat.osiagniecia)
 																{
-																				AddAchievement(achievement);
+																				Achievements.Add(achievement);
 																}
 												}
 
@@ -350,7 +343,7 @@ namespace DC
 								private void walidateAndSave_Click(object sender, EventArgs e)
 								{
 												test();
-												
+
 												Wniosek document = loadDataFromFields();
 												Serializer<Wniosek> serializer = new Serializer<Wniosek>();
 												XmlDocument xml = serializer.loadToXML(document);
@@ -433,7 +426,7 @@ namespace DC
 
 												if(Achievements.Count != 0)
 												{
-																document.kandydat.osiagniecia = Achievements.ToArray();
+																document.kandydat.osiagniecia = Achievements.GetAllRows().ToArray();
 												}
 
 												document.zatrudnienie = new Zatrudnienie();
@@ -478,25 +471,49 @@ namespace DC
 
 								private void test()
 								{
-												
+												var indicies = titlesTable.SelectedIndices;
 								}
 
 								private void titlesTable_SelectedIndexChanged(object sender, EventArgs e)
 								{
-												editTitle.Enabled = true;
-												removeTitle.Enabled = true;
+												if (Titles.SelectedIndex != -1)
+												{
+																editTitle.Enabled = true;
+																removeTitle.Enabled = true;
+												}
+												else 
+												{
+																editTitle.Enabled = false;
+																removeTitle.Enabled = false;
+												}
 								}
 
 								private void achievementsList_SelectedIndexChanged(object sender, EventArgs e)
 								{
-												editAchievement.Enabled = true;
-												removeAchievement.Enabled = true;
+												if (Achievements.SelectedIndex != -1)
+												{
+																editAchievement.Enabled = true;
+																removeAchievement.Enabled = true;
+												}
+												else
+												{
+																editAchievement.Enabled = false;
+																removeAchievement.Enabled = false;
+												}
 								}
 
 								private void exJobsTable_SelectedIndexChanged(object sender, EventArgs e)
 								{
-												exJobEdit.Enabled = true;
-												exJobRemove.Enabled = true;
+												if (ExJobs.SelectedIndex != -1)
+												{
+																editExJob.Enabled = true;
+																removeExJob.Enabled = true;
+												}
+												else
+												{
+																editExJob.Enabled = false;
+																removeExJob.Enabled = false;
+												}
 								}
 
 								private void addTitle_Click(object sender, EventArgs e)
@@ -528,6 +545,68 @@ namespace DC
 								private void removeTitle_Click(object sender, EventArgs e)
 								{
 												Titles.RemoveSelected();
+								}
+
+								private void exJobAdd_Click(object sender, EventArgs e)
+								{
+												using (ExJobWindow window = new ExJobWindow(ExJobWindow.Operation.Add))
+												{
+																var result = window.ShowDialog();
+																if (result == DialogResult.OK)
+																{
+																				string[] row = window.Values;
+																				ExJobs.Add(row);
+																}
+												}
+								}
+
+								private void exJobEdit_Click(object sender, EventArgs e)
+								{
+												using (ExJobWindow window = new ExJobWindow(ExJobWindow.Operation.Edit, ExJobs.GetSelectedRow()))
+												{
+																var result = window.ShowDialog();
+																if (result == DialogResult.OK)
+																{
+																				string[] editedValues = window.Values;
+																				ExJobs.EditSelectedRow(editedValues);
+																}
+												}
+								}
+
+								private void exJobRemove_Click(object sender, EventArgs e)
+								{
+												ExJobs.RemoveSelected();
+								}
+
+								private void addAchievement_Click(object sender, EventArgs e)
+								{
+												using (AchievementWindow window = new AchievementWindow(AchievementWindow.Operation.Add))
+												{
+																var result = window.ShowDialog();
+																if (result == DialogResult.OK)
+																{
+																				string row = window.Value;
+																				Achievements.Add(row);
+																}
+												}
+								}
+
+								private void editAchievement_Click(object sender, EventArgs e)
+								{
+												using (AchievementWindow window = new AchievementWindow(AchievementWindow.Operation.Edit, Achievements.GetSelectedRow()))
+												{
+																var result = window.ShowDialog();
+																if (result == DialogResult.OK)
+																{
+																				string row = window.Value;
+																				Achievements.EditSelectedRow(row);
+																}
+												}
+								}
+
+								private void removeAchievement_Click(object sender, EventArgs e)
+								{
+												Achievements.RemoveSelected();
 								}
 				}
 }
