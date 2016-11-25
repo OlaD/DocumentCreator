@@ -35,7 +35,7 @@
 												this.yearLabel = new System.Windows.Forms.Label();
 												this.title = new System.Windows.Forms.ComboBox();
 												this.cancel = new System.Windows.Forms.Button();
-												this.year = new System.Windows.Forms.TextBox();
+												this.year = new System.Windows.Forms.ComboBox();
 												this.SuspendLayout();
 												// 
 												// save
@@ -109,23 +109,25 @@
 												// 
 												// year
 												// 
+												this.year.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+												this.year.FormattingEnabled = true;
 												this.year.Location = new System.Drawing.Point(100, 70);
 												this.year.Name = "year";
-												this.year.Size = new System.Drawing.Size(121, 20);
-												this.year.TabIndex = 2;
+												this.year.Size = new System.Drawing.Size(121, 21);
+												this.year.TabIndex = 8;
 												// 
 												// TitleWindow
 												// 
 												this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 												this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 												this.ClientSize = new System.Drawing.Size(233, 142);
+												this.Controls.Add(this.year);
 												this.Controls.Add(this.cancel);
 												this.Controls.Add(this.title);
 												this.Controls.Add(this.yearLabel);
 												this.Controls.Add(this.nameLabel);
 												this.Controls.Add(this.titleLabel);
 												this.Controls.Add(this.name);
-												this.Controls.Add(this.year);
 												this.Controls.Add(this.save);
 												this.Name = "TitleWindow";
 												this.Text = "TitleWindow";
@@ -143,6 +145,6 @@
 								private System.Windows.Forms.Label yearLabel;
 								private System.Windows.Forms.ComboBox title;
 								private System.Windows.Forms.Button cancel;
-								private System.Windows.Forms.TextBox year;
+								private System.Windows.Forms.ComboBox year;
 				}
 }

@@ -96,6 +96,7 @@
 												this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
 												this.organizationalUnit = new System.Windows.Forms.TextBox();
 												this.organizationalUnitLabel = new System.Windows.Forms.Label();
+												this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
 												this.applicationTabControl.SuspendLayout();
 												this.candidateData.SuspendLayout();
 												this.addressGroupBox.SuspendLayout();
@@ -616,9 +617,9 @@
 												this.fullWorkingTimeCheckBox.AutoSize = true;
 												this.fullWorkingTimeCheckBox.Location = new System.Drawing.Point(16, 64);
 												this.fullWorkingTimeCheckBox.Name = "fullWorkingTimeCheckBox";
-												this.fullWorkingTimeCheckBox.Size = new System.Drawing.Size(75, 17);
+												this.fullWorkingTimeCheckBox.Size = new System.Drawing.Size(74, 17);
 												this.fullWorkingTimeCheckBox.TabIndex = 15;
-												this.fullWorkingTimeCheckBox.Text = "pełen etat";
+												this.fullWorkingTimeCheckBox.Text = "pełny etat";
 												this.fullWorkingTimeCheckBox.UseVisualStyleBackColor = true;
 												this.fullWorkingTimeCheckBox.CheckedChanged += new System.EventHandler(this.fullWorkingTimeCheckBox_CheckedChanged);
 												// 
@@ -710,7 +711,7 @@
 												this.walidateAndSave.TabIndex = 2;
 												this.walidateAndSave.Text = "Waliduj i zapisz";
 												this.walidateAndSave.UseVisualStyleBackColor = true;
-												this.walidateAndSave.Click += new System.EventHandler(this.walidateAndSave_Click);
+												this.walidateAndSave.Click += new System.EventHandler(this.validateAndSave_Click);
 												// 
 												// loadXml
 												// 
@@ -737,10 +738,6 @@
 												this.dateLabel.Size = new System.Drawing.Size(33, 13);
 												this.dateLabel.TabIndex = 5;
 												this.dateLabel.Text = "Data:";
-												// 
-												// openFileDialog
-												// 
-												this.openFileDialog.FileName = "openFileDialog1";
 												// 
 												// organizationalUnit
 												// 
@@ -864,6 +861,7 @@
 								private System.Windows.Forms.OpenFileDialog openFileDialog;
 								private System.Windows.Forms.TextBox organizationalUnit;
 								private System.Windows.Forms.Label organizationalUnitLabel;
+								private System.Windows.Forms.SaveFileDialog saveFileDialog;
 				}
 }
 

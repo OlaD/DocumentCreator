@@ -32,12 +32,12 @@
 												this.startYearLabel = new System.Windows.Forms.Label();
 												this.nameLabel = new System.Windows.Forms.Label();
 												this.positionLabel = new System.Windows.Forms.Label();
-												this.startYear = new System.Windows.Forms.TextBox();
 												this.save = new System.Windows.Forms.Button();
 												this.endYearLabel = new System.Windows.Forms.Label();
-												this.endYear = new System.Windows.Forms.TextBox();
 												this.position = new System.Windows.Forms.TextBox();
 												this.place = new System.Windows.Forms.TextBox();
+												this.startYear = new System.Windows.Forms.ComboBox();
+												this.endYear = new System.Windows.Forms.ComboBox();
 												this.SuspendLayout();
 												// 
 												// cancel
@@ -76,13 +76,6 @@
 												this.positionLabel.TabIndex = 13;
 												this.positionLabel.Text = "Stanowisko:";
 												// 
-												// startYear
-												// 
-												this.startYear.Location = new System.Drawing.Point(111, 69);
-												this.startYear.Name = "startYear";
-												this.startYear.Size = new System.Drawing.Size(174, 20);
-												this.startYear.TabIndex = 3;
-												// 
 												// save
 												// 
 												this.save.Location = new System.Drawing.Point(43, 127);
@@ -102,13 +95,6 @@
 												this.endYearLabel.TabIndex = 19;
 												this.endYearLabel.Text = "Rok zakończenia:";
 												// 
-												// endYear
-												// 
-												this.endYear.Location = new System.Drawing.Point(111, 95);
-												this.endYear.Name = "endYear";
-												this.endYear.Size = new System.Drawing.Size(174, 20);
-												this.endYear.TabIndex = 4;
-												// 
 												// position
 												// 
 												this.position.Location = new System.Drawing.Point(111, 15);
@@ -123,20 +109,38 @@
 												this.place.Size = new System.Drawing.Size(174, 20);
 												this.place.TabIndex = 1;
 												// 
+												// startYear
+												// 
+												this.startYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+												this.startYear.FormattingEnabled = true;
+												this.startYear.Location = new System.Drawing.Point(112, 68);
+												this.startYear.Name = "startYear";
+												this.startYear.Size = new System.Drawing.Size(173, 21);
+												this.startYear.TabIndex = 20;
+												// 
+												// endYear
+												// 
+												this.endYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+												this.endYear.FormattingEnabled = true;
+												this.endYear.Location = new System.Drawing.Point(111, 95);
+												this.endYear.Name = "endYear";
+												this.endYear.Size = new System.Drawing.Size(173, 21);
+												this.endYear.TabIndex = 21;
+												// 
 												// ExJobWindow
 												// 
 												this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 												this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 												this.ClientSize = new System.Drawing.Size(297, 162);
+												this.Controls.Add(this.endYear);
+												this.Controls.Add(this.startYear);
 												this.Controls.Add(this.place);
 												this.Controls.Add(this.position);
 												this.Controls.Add(this.endYearLabel);
-												this.Controls.Add(this.endYear);
 												this.Controls.Add(this.cancel);
 												this.Controls.Add(this.startYearLabel);
 												this.Controls.Add(this.nameLabel);
 												this.Controls.Add(this.positionLabel);
-												this.Controls.Add(this.startYear);
 												this.Controls.Add(this.save);
 												this.Name = "ExJobWindow";
 												this.Text = "exJobWindow";
@@ -151,11 +155,11 @@
 								private System.Windows.Forms.Label startYearLabel;
 								private System.Windows.Forms.Label nameLabel;
 								private System.Windows.Forms.Label positionLabel;
-								private System.Windows.Forms.TextBox startYear;
 								private System.Windows.Forms.Button save;
 								private System.Windows.Forms.Label endYearLabel;
-								private System.Windows.Forms.TextBox endYear;
 								private System.Windows.Forms.TextBox position;
 								private System.Windows.Forms.TextBox place;
+								private System.Windows.Forms.ComboBox startYear;
+								private System.Windows.Forms.ComboBox endYear;
 				}
 }

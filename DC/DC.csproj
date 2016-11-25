@@ -46,7 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataToFieldsLoader.cs" />
     <Compile Include="ListBoxTable.cs" />
+    <Compile Include="Presenter.cs" />
     <Compile Include="Windows\AchievementWindow.cs">
       <SubType>Form</SubType>
     </Compile>

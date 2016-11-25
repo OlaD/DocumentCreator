@@ -12,6 +12,7 @@ namespace DC
 				{
 								bool xmlValid;
 								bool nodeNotValid;
+								bool detailMessage;
 
 								public bool Validate(XmlDocument xml)
 								{
@@ -37,13 +38,23 @@ namespace DC
 												{
 																nodeNotValid = false;
 																XmlNode node = xml.SelectSingleNode(Fields.fieldsPaths[field]);
-																xml.Validate(eventHandler, node);
-																if (nodeNotValid)
+																if(node != null)
 																{
-																				message.AppendLine(Fields.fieldsMessages[field]);
+																				xml.Validate(eventHandler, node);
+																				if (nodeNotValid)
+																				{
+																								message.AppendLine(Fields.fieldsMessages[field]);
+																				}
+																}
+																else
+																{
+																				nodeNotValid = true;
+																				xmlValid = false;
+																				message.AppendLine("Uzyskane tytuły: kandydat musi mieć uzyskany przynajmniej jeden tytuł zawodowy.");
 																}
 												}
-												if(!xmlValid)
+
+												if (!xmlValid)
 												{
 																MessageBox.Show(message.ToString(), "Błąd", MessageBoxButtons.OK);
 												}
@@ -55,16 +66,31 @@ namespace DC
 												nodeNotValid = true;
 								}
 
-								void ValidateAll(XmlDocument xml)
+								public bool ValidateAll(XmlDocument xml, bool detailMessage = true)
 								{
+												xmlValid = true;
+												xml.Schemas.Add(null, "schema.xsd");
+
+												this.detailMessage = detailMessage;
 												ValidationEventHandler eventHandler = new ValidationEventHandler(validationAllEvent);
 												xml.Validate(eventHandler);
+
+												return xmlValid;
 								}
 
 								void validationAllEvent(object sender, ValidationEventArgs e)
 								{
 												xmlValid = false;
-												MessageBox.Show(e.Message, "Błąd", MessageBoxButtons.OK);
+												string message;
+												if(detailMessage)
+												{
+																message = e.Message;
+												}
+												else
+												{
+																message = "Błędny dokument";
+												}
+												MessageBox.Show(message, "Błąd", MessageBoxButtons.OK);
 								}
 				}
 }

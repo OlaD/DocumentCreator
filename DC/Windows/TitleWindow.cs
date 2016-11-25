@@ -25,10 +25,11 @@ namespace DC
 												InitializeComponent();
 
 												Values = new string[3];
+												fillYears();
 
 												if(operation == Operation.Edit)
 												{
-																title.SelectedItem = values[0];//title.Items.IndexOf(values[0]);
+																title.SelectedItem = values[0];
 																name.SelectedItem = values[1];
 																year.Text = values[2];
 
@@ -40,6 +41,14 @@ namespace DC
 												}
 
 												CancelButton = cancel;
+								}
+
+
+								private void fillYears()
+								{
+												List<int> l1 = Enumerable.Range(1900, 2016 - 1900).ToList();
+												List<string> l2 = l1.ConvertAll<string>(x => x.ToString());
+												year.DataSource = l2;
 								}
 
 								private void title_SelectedIndexChanged(object sender, EventArgs e)

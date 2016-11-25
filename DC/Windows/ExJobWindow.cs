@@ -25,13 +25,14 @@ namespace DC
 												InitializeComponent();
 
 												Values = new string[4];
+												fillYears();
 
 												if (operation == Operation.Edit)
 												{
 																position.Text = values[0];
 																place.Text = values[1];
-																startYear.Text = values[2];
-																endYear.Text = values[3];
+																startYear.SelectedItem = values[2];
+																endYear.SelectedItem = values[3];
 
 																Text = "Edytuj";
 												}
@@ -41,6 +42,15 @@ namespace DC
 												}
 
 												CancelButton = cancel;
+								}
+
+								private void fillYears()
+								{
+												List<int> l1 = Enumerable.Range(1900, 2016 - 1900).ToList();
+												List<string> l2 = l1.ConvertAll<string>(x => x.ToString());
+												List<string> l3 = l1.ConvertAll<string>(x => x.ToString());
+												startYear.DataSource = l2;
+												endYear.DataSource = l3;
 								}
 
 								private void save_Click(object sender, EventArgs e)
