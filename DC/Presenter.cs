@@ -52,6 +52,35 @@ namespace DC
 												bool isCorrect = validator.ValidateAll(xmlDocument, false);
 												return isCorrect;
 								}
+
+								public void validateAndSaveDocument()
+								{
+												DocumentCreator creator = new DocumentCreator(view);
+												Wniosek document = creator.Create();
+												Serializer<Wniosek> serializer = new Serializer<Wniosek>();
+												XmlDocument xml = serializer.loadToXML(document);
+
+												Validator validator = new Validator();
+												bool isCorrect = validator.Validate(xml);
+
+												if (isCorrect)
+												{
+																if (saveXML(xml, document))
+																{
+																				System.Windows.Forms.MessageBox.Show("Zapisano");
+																}
+												};
+								}
+
+								private bool saveXML(XmlDocument xml, Wniosek document)
+								{
+												if (view.SaveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+												{
+																xml.Save(view.SaveFileDialog.FileName);
+																return true;
+												}
+												return false;
+								}
 				}
 
 				

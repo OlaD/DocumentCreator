@@ -131,6 +131,10 @@ namespace DC
 																}
 												}
 								}
+								public SaveFileDialog SaveFileDialog 
+								{
+												get { return saveFileDialog; }
+								}
 
 								private Presenter presenter;
 
@@ -155,65 +159,6 @@ namespace DC
 								{
 												presenter.loadDataToFields(openFileDialog.FileName);
 								}
-								}
-
-								private Wniosek loadDataFromFields()
-								{
-												Wniosek document = new Wniosek();
-												
-
-												
-												
-												
-												if(ExJobs.Count != 0)
-												{
-																List<Praca> jobs = new List<Praca>();
-																foreach (string[] row in ExJobs.GetAllRows())
-																{
-																				Praca job = new Praca();
-																				job.stanowisko = row[0];
-																				job.miejsce = row[1];
-																				job.rok_rozpoczecia = row[2];
-																				job.rok_zakonczenia = row[3];
-																				jobs.Add(job);
-																}
-																document.kandydat.przebieg_pracy = jobs.ToArray();
-												}
-
-												if(Achievements.Count != 0)
-												{
-																document.kandydat.osiagniecia = Achievements.GetAllRows().ToArray();
-												}
-
-												document.zatrudnienie = new Zatrudnienie();
-												document.zatrudnienie.stanowisko = Position;
-												document.zatrudnienie.od_dnia = StartDate;
-												document.zatrudnienie.czas_zatrudnienia = new Czas_Zatrudnienia();
-												document.zatrudnienie.czas_zatrudnienia.okreslony = IsDefiniteWorkTime;
-												if(IsDefiniteWorkTime)
-												{
-																document.zatrudnienie.czas_zatrudnienia.do_dnia = EndDate;
-												}
-
-												if(IsFullWorkTime)
-												{
-																document.zatrudnienie.wymiar_etatu = "pelny";
-												}
-												else
-												{
-																document.zatrudnienie.wymiar_etatu = WorkTime;
-												}
-
-												if(IsContract)
-												{
-																document.zatrudnienie.podstawa = "umowa o prace";
-												}
-												else
-												{
-																document.zatrudnienie.podstawa = "mianowanie";
-												}
-
-												return document;
 								}
 
 								private void titlesTable_SelectedIndexChanged(object sender, EventArgs e)
@@ -385,30 +330,7 @@ namespace DC
 
 								private void validateAndSave_Click(object sender, EventArgs e)
 								{
-												Wniosek document = loadDataFromFields();
-												Serializer<Wniosek> serializer = new Serializer<Wniosek>();
-												XmlDocument xml = serializer.loadToXML(document);
-
-												Validator validator = new Validator();
-												bool isCorrect = validator.Validate(xml);
-
-												if (isCorrect)
-												{
-																if(saveXML(xml, document))
-																{
-																				MessageBox.Show("Zapisano");
-																}
-												};
-								}
-
-								private bool saveXML(XmlDocument xml, Wniosek document)
-								{
-												if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-												{
-																xml.Save(saveFileDialog.FileName);
-																return true;
-												}
-												return false;
+												presenter.validateAndSaveDocument();
 								}
 				}
 }
