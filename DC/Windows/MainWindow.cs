@@ -157,7 +157,7 @@ namespace DC
 								{
 								if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 								{
-												presenter.loadDataToFields(openFileDialog.FileName);
+												presenter.LoadDataToFields(openFileDialog.FileName);
 								}
 								}
 
@@ -330,7 +330,12 @@ namespace DC
 
 								private void validateAndSave_Click(object sender, EventArgs e)
 								{
-												presenter.validateAndSaveDocument();
+												presenter.ValidateAndSaveDocument();
+								}
+
+								private void postCode_Leave(object sender, EventArgs e)
+								{
+												presenter.GetCity();
 								}
 				}
 }

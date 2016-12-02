@@ -236,6 +236,7 @@
 												this.postCode.Name = "postCode";
 												this.postCode.Size = new System.Drawing.Size(276, 20);
 												this.postCode.TabIndex = 0;
+												this.postCode.Leave += new System.EventHandler(this.postCode_Leave);
 												// 
 												// surnameLabel
 												// 

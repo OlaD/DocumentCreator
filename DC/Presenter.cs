@@ -13,12 +13,12 @@ namespace DC
 
 								// test:
 								// pola w view będą miały odpowiednie wartości
-								public void loadDataToFields(string path)
+								public void LoadDataToFields(string path)
 								{
 												Serializer<Wniosek> serializer = new Serializer<Wniosek>();
 												Wniosek document = SerializeDocument(path, serializer);
-												XmlDocument xmlDocument = loadDataFromXML(serializer, document);
-												bool isCorrect = validateData(xmlDocument);
+												XmlDocument xmlDocument = LoadDataFromXML(serializer, document);
+												bool isCorrect = ValidateData(xmlDocument);
 												if (isCorrect)
 												{
 																FormFiller filler = new FormFiller(view);
@@ -36,7 +36,7 @@ namespace DC
 
 								// test:
 								// dokument będzie miał odpowiednie wartości
-								private XmlDocument loadDataFromXML(Serializer<Wniosek> serializer, Wniosek document)
+								private XmlDocument LoadDataFromXML(Serializer<Wniosek> serializer, Wniosek document)
 								{
 
 												XmlDocument xmlDocument = serializer.loadToXML(document);
@@ -46,14 +46,14 @@ namespace DC
 								// test:
 								// poprawny dokument zwróci true
 								// zły zwróci false
-								private bool validateData(XmlDocument xmlDocument)
+								private bool ValidateData(XmlDocument xmlDocument)
 								{
 												Validator validator = new Validator();
 												bool isCorrect = validator.ValidateAll(xmlDocument, false);
 												return isCorrect;
 								}
 
-								public void validateAndSaveDocument()
+								public void ValidateAndSaveDocument()
 								{
 												DocumentCreator creator = new DocumentCreator(view);
 												Wniosek document = creator.Create();
@@ -65,14 +65,14 @@ namespace DC
 
 												if (isCorrect)
 												{
-																if (saveXML(xml, document))
+																if (SaveXML(xml, document))
 																{
 																				System.Windows.Forms.MessageBox.Show("Zapisano");
 																}
 												};
 								}
 
-								private bool saveXML(XmlDocument xml, Wniosek document)
+								private bool SaveXML(XmlDocument xml, Wniosek document)
 								{
 												if (view.SaveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 												{
@@ -80,6 +80,13 @@ namespace DC
 																return true;
 												}
 												return false;
+								}
+
+								public void GetCity()
+								{
+												ParserHTML parser = new ParserHTML();
+												string city = parser.GetCity(view.PostCode);
+												view.City = city;
 								}
 				}
 
