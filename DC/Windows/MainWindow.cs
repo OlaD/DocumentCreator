@@ -337,5 +337,11 @@ namespace DC
 								{
 												presenter.GetCity();
 								}
+
+								private void generatePDF_Click(object sender, EventArgs e)
+								{
+												PDFGenerator generator = new PDFGenerator();
+												generator.GeneratePDF();
+								}
 				}
 }

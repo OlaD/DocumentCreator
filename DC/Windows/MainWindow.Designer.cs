@@ -97,6 +97,8 @@
 												this.organizationalUnit = new System.Windows.Forms.TextBox();
 												this.organizationalUnitLabel = new System.Windows.Forms.Label();
 												this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+												this.generatePDF = new System.Windows.Forms.Button();
+												this.clear = new System.Windows.Forms.Button();
 												this.applicationTabControl.SuspendLayout();
 												this.candidateData.SuspendLayout();
 												this.addressGroupBox.SuspendLayout();
@@ -706,9 +708,9 @@
 												// 
 												// walidateAndSave
 												// 
-												this.walidateAndSave.Location = new System.Drawing.Point(228, 326);
+												this.walidateAndSave.Location = new System.Drawing.Point(228, 327);
 												this.walidateAndSave.Name = "walidateAndSave";
-												this.walidateAndSave.Size = new System.Drawing.Size(194, 23);
+												this.walidateAndSave.Size = new System.Drawing.Size(100, 23);
 												this.walidateAndSave.TabIndex = 2;
 												this.walidateAndSave.Text = "Waliduj i zapisz";
 												this.walidateAndSave.UseVisualStyleBackColor = true;
@@ -716,11 +718,11 @@
 												// 
 												// loadXml
 												// 
-												this.loadXml.Location = new System.Drawing.Point(28, 326);
+												this.loadXml.Location = new System.Drawing.Point(122, 327);
 												this.loadXml.Name = "loadXml";
-												this.loadXml.Size = new System.Drawing.Size(194, 23);
+												this.loadXml.Size = new System.Drawing.Size(100, 23);
 												this.loadXml.TabIndex = 3;
-												this.loadXml.Text = "Wczytaj dane z XML";
+												this.loadXml.Text = "Wczytaj XML";
 												this.loadXml.UseVisualStyleBackColor = true;
 												this.loadXml.Click += new System.EventHandler(this.loadXml_Click);
 												// 
@@ -756,11 +758,32 @@
 												this.organizationalUnitLabel.TabIndex = 7;
 												this.organizationalUnitLabel.Text = "Jednostka organizacyjna:";
 												// 
+												// generatePDF
+												// 
+												this.generatePDF.Location = new System.Drawing.Point(334, 327);
+												this.generatePDF.Name = "generatePDF";
+												this.generatePDF.Size = new System.Drawing.Size(100, 23);
+												this.generatePDF.TabIndex = 8;
+												this.generatePDF.Text = "Generuj PDF";
+												this.generatePDF.UseVisualStyleBackColor = true;
+												this.generatePDF.Click += new System.EventHandler(this.generatePDF_Click);
+												// 
+												// clear
+												// 
+												this.clear.Location = new System.Drawing.Point(16, 327);
+												this.clear.Name = "clear";
+												this.clear.Size = new System.Drawing.Size(100, 23);
+												this.clear.TabIndex = 9;
+												this.clear.Text = "Wyczyść";
+												this.clear.UseVisualStyleBackColor = true;
+												// 
 												// MainWindow
 												// 
 												this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 												this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 												this.ClientSize = new System.Drawing.Size(448, 357);
+												this.Controls.Add(this.clear);
+												this.Controls.Add(this.generatePDF);
 												this.Controls.Add(this.organizationalUnitLabel);
 												this.Controls.Add(this.organizationalUnit);
 												this.Controls.Add(this.dateLabel);
@@ -863,6 +886,8 @@
 								private System.Windows.Forms.TextBox organizationalUnit;
 								private System.Windows.Forms.Label organizationalUnitLabel;
 								private System.Windows.Forms.SaveFileDialog saveFileDialog;
+								private System.Windows.Forms.Button generatePDF;
+								private System.Windows.Forms.Button clear;
 				}
 }
 
