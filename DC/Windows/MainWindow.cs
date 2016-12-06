@@ -340,8 +340,7 @@ namespace DC
 
 								private void generatePDF_Click(object sender, EventArgs e)
 								{
-												PDFGenerator generator = new PDFGenerator();
-												generator.GeneratePDF();
+												presenter.GeneratePDF();
 								}
 				}
 }

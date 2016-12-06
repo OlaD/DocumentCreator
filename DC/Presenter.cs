@@ -5,6 +5,7 @@ namespace DC
 				class Presenter
 				{
 								MainWindow view;
+								Wniosek document;
 
 								public Presenter(MainWindow view)
 								{
@@ -16,7 +17,7 @@ namespace DC
 								public void LoadDataToFields(string path)
 								{
 												Serializer<Wniosek> serializer = new Serializer<Wniosek>();
-												Wniosek document = SerializeDocument(path, serializer);
+												document = SerializeDocument(path, serializer);
 												XmlDocument xmlDocument = LoadDataFromXML(serializer, document);
 												bool isCorrect = ValidateData(xmlDocument);
 												if (isCorrect)
@@ -87,6 +88,12 @@ namespace DC
 												ParserHTML parser = new ParserHTML();
 												string city = parser.GetCity(view.PostCode);
 												view.City = city;
+								}
+
+								public void GeneratePDF()
+								{
+												PDFGenerator generator = new PDFGenerator(document);
+												generator.GeneratePDF();
 								}
 				}
 
