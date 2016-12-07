@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -335,12 +336,114 @@ namespace DC
 
 								private void postCode_Leave(object sender, EventArgs e)
 								{
-												presenter.GetCity();
+												string message = presenter.ValidateField(Fields.Field.postCode);
+												if (message != "")
+												{
+																ToolTip error = new ToolTip();
+																error.SetToolTip(postCode, message);
+																postCode.ForeColor = System.Drawing.Color.Red;
+												}
+												else
+												{
+																string city = presenter.GetCity();
+																if (city == "")
+																{
+																				ToolTip error = new ToolTip();
+																				error.SetToolTip(postCode, "Nie znaleziono miejscowości o podanym kodzie pocztowym.");
+																				postCode.ForeColor = System.Drawing.Color.Red;
+																}
+																else
+																{
+																				postCode.ForeColor = System.Drawing.Color.Black;
+																				City = city;
+																}
+												}
 								}
 
 								private void generatePDF_Click(object sender, EventArgs e)
 								{
 												presenter.GeneratePDF();
+								}
+
+								private void name_Leave(object sender, EventArgs e)
+								{
+												string message = presenter.ValidateField(Fields.Field.name);
+												if(message != "")
+												{
+																ToolTip error = new ToolTip();
+																error.SetToolTip(name, message);
+																name.ForeColor = System.Drawing.Color.Red;
+												}
+												else
+												{
+																name.ForeColor = System.Drawing.Color.Black;
+												}
+								}
+
+								private void surname_Leave(object sender, EventArgs e)
+								{
+												string message = presenter.ValidateField(Fields.Field.surname);
+												if (message != "")
+												{
+																ToolTip error = new ToolTip();
+																error.SetToolTip(surname, message);
+																surname.ForeColor = System.Drawing.Color.Red;
+												}
+												else
+												{
+																surname.ForeColor = System.Drawing.Color.Black;
+												}
+												
+								}
+
+								private void city_Leave(object sender, EventArgs e)
+								{
+												string message = presenter.ValidateField(Fields.Field.city);
+												if (message != "")
+												{
+																ToolTip error = new ToolTip();
+																error.SetToolTip(city, message);
+																city.ForeColor = System.Drawing.Color.Red;
+												}
+												else
+												{
+																city.ForeColor = System.Drawing.Color.Black;
+												}
+								}
+
+								private void workingTime_Leave(object sender, EventArgs e)
+								{
+												string message = presenter.ValidateField(Fields.Field.workTime);
+												if (message != "")
+												{
+																ToolTip error = new ToolTip();
+																error.SetToolTip(workingTime, message);
+																workingTime.ForeColor = System.Drawing.Color.Red;
+												}
+												else
+												{
+																workingTime.ForeColor = System.Drawing.Color.Black;
+												}
+								}
+
+								private void button1_Click(object sender, EventArgs e)
+								{
+												string message = presenter.ValidateField(Fields.Field.titles);
+												if (message != "")
+												{
+																ToolTip error = new ToolTip();
+																error.SetToolTip(button1, message);
+																button1.ForeColor = System.Drawing.Color.Red;
+												}
+												else
+												{
+																button1.ForeColor = System.Drawing.Color.Black;
+												}
+								}
+
+								private void clear_Click(object sender, EventArgs e)
+								{
+												presenter.CleanWindow();
 								}
 				}
 }

@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DocumentCreator.cs" />
+    <Compile Include="DocumentCreator2.cs" />
     <Compile Include="FormFiller.cs" />
     <Compile Include="ListBoxTable.cs" />
     <Compile Include="ParserHTML.cs" />

@@ -1,8 +1,6 @@
 ﻿using System.Windows.Forms;
 using System.Xml.Schema;
 using System.Xml;
-using System.Xml.Linq;
-using System.Collections.Generic;
 using System;
 using System.Text;
 
@@ -58,6 +56,36 @@ namespace DC
 												{
 																MessageBox.Show(message.ToString(), "Błąd", MessageBoxButtons.OK);
 												}
+								}
+
+								public string ValidNode(Fields.Field field, XmlDocument xml)
+								{
+												//xmlValid = true;
+												xml.Schemas.Add(null, "schema.xsd");
+
+												ValidationEventHandler eventHandler = new ValidationEventHandler(validationNodeEvent);
+
+												string message = "";
+
+												nodeNotValid = false;
+												XmlNode node = xml.SelectSingleNode(Fields.fieldsPaths[field]);
+
+												if (node != null)
+												{
+																xml.Validate(eventHandler, node);
+																if (nodeNotValid)
+																{
+																				message = Fields.fieldsMessages[field];
+																}
+												}
+												else
+												{
+																nodeNotValid = true;
+																xmlValid = false;
+																message = "Uzyskane tytuły: kandydat musi mieć uzyskany przynajmniej jeden tytuł zawodowy.";
+												}
+
+												return message;
 								}
 
 								void validationNodeEvent(object sender, ValidationEventArgs e)

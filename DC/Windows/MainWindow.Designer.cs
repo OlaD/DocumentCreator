@@ -99,6 +99,7 @@
 												this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
 												this.generatePDF = new System.Windows.Forms.Button();
 												this.clear = new System.Windows.Forms.Button();
+												this.button1 = new System.Windows.Forms.Button();
 												this.applicationTabControl.SuspendLayout();
 												this.candidateData.SuspendLayout();
 												this.addressGroupBox.SuspendLayout();
@@ -216,14 +217,14 @@
 												this.street.Location = new System.Drawing.Point(89, 71);
 												this.street.Name = "street";
 												this.street.Size = new System.Drawing.Size(276, 20);
-												this.street.TabIndex = 3;
+												this.street.TabIndex = 2;
 												// 
 												// houseNumber
 												// 
 												this.houseNumber.Location = new System.Drawing.Point(89, 97);
 												this.houseNumber.Name = "houseNumber";
 												this.houseNumber.Size = new System.Drawing.Size(276, 20);
-												this.houseNumber.TabIndex = 2;
+												this.houseNumber.TabIndex = 3;
 												// 
 												// city
 												// 
@@ -231,6 +232,7 @@
 												this.city.Name = "city";
 												this.city.Size = new System.Drawing.Size(276, 20);
 												this.city.TabIndex = 1;
+												this.city.Leave += new System.EventHandler(this.city_Leave);
 												// 
 												// postCode
 												// 
@@ -264,6 +266,7 @@
 												this.surname.Name = "surname";
 												this.surname.Size = new System.Drawing.Size(276, 20);
 												this.surname.TabIndex = 1;
+												this.surname.Leave += new System.EventHandler(this.surname_Leave);
 												// 
 												// name
 												// 
@@ -271,6 +274,7 @@
 												this.name.Name = "name";
 												this.name.Size = new System.Drawing.Size(276, 20);
 												this.name.TabIndex = 0;
+												this.name.Leave += new System.EventHandler(this.name_Leave);
 												// 
 												// education
 												// 
@@ -286,6 +290,7 @@
 												// 
 												// titlesGroupBox
 												// 
+												this.titlesGroupBox.Controls.Add(this.button1);
 												this.titlesGroupBox.Controls.Add(this.editTitle);
 												this.titlesGroupBox.Controls.Add(this.removeTitle);
 												this.titlesGroupBox.Controls.Add(this.addTitle);
@@ -300,9 +305,9 @@
 												// editTitle
 												// 
 												this.editTitle.Enabled = false;
-												this.editTitle.Location = new System.Drawing.Point(180, 18);
+												this.editTitle.Location = new System.Drawing.Point(104, 18);
 												this.editTitle.Name = "editTitle";
-												this.editTitle.Size = new System.Drawing.Size(99, 23);
+												this.editTitle.Size = new System.Drawing.Size(93, 23);
 												this.editTitle.TabIndex = 6;
 												this.editTitle.Text = "Edytuj";
 												this.editTitle.UseVisualStyleBackColor = true;
@@ -311,9 +316,9 @@
 												// removeTitle
 												// 
 												this.removeTitle.Enabled = false;
-												this.removeTitle.Location = new System.Drawing.Point(285, 18);
+												this.removeTitle.Location = new System.Drawing.Point(197, 18);
 												this.removeTitle.Name = "removeTitle";
-												this.removeTitle.Size = new System.Drawing.Size(99, 23);
+												this.removeTitle.Size = new System.Drawing.Size(93, 23);
 												this.removeTitle.TabIndex = 5;
 												this.removeTitle.Text = "Usuń";
 												this.removeTitle.UseVisualStyleBackColor = true;
@@ -323,7 +328,7 @@
 												// 
 												this.addTitle.Location = new System.Drawing.Point(11, 18);
 												this.addTitle.Name = "addTitle";
-												this.addTitle.Size = new System.Drawing.Size(163, 23);
+												this.addTitle.Size = new System.Drawing.Size(93, 23);
 												this.addTitle.TabIndex = 4;
 												this.addTitle.Text = "Dodaj";
 												this.addTitle.UseVisualStyleBackColor = true;
@@ -614,6 +619,7 @@
 												this.workingTime.Name = "workingTime";
 												this.workingTime.Size = new System.Drawing.Size(75, 20);
 												this.workingTime.TabIndex = 1;
+												this.workingTime.Leave += new System.EventHandler(this.workingTime_Leave);
 												// 
 												// fullWorkingTimeCheckBox
 												// 
@@ -776,6 +782,17 @@
 												this.clear.TabIndex = 9;
 												this.clear.Text = "Wyczyść";
 												this.clear.UseVisualStyleBackColor = true;
+												this.clear.Click += new System.EventHandler(this.clear_Click);
+												// 
+												// button1
+												// 
+												this.button1.Location = new System.Drawing.Point(291, 18);
+												this.button1.Name = "button1";
+												this.button1.Size = new System.Drawing.Size(93, 23);
+												this.button1.TabIndex = 7;
+												this.button1.Text = "Sprawdź";
+												this.button1.UseVisualStyleBackColor = true;
+												this.button1.Click += new System.EventHandler(this.button1_Click);
 												// 
 												// MainWindow
 												// 
@@ -888,6 +905,7 @@
 								private System.Windows.Forms.SaveFileDialog saveFileDialog;
 								private System.Windows.Forms.Button generatePDF;
 								private System.Windows.Forms.Button clear;
+								private System.Windows.Forms.Button button1;
 				}
 }
 

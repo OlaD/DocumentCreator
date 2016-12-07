@@ -34,19 +34,25 @@ namespace DC
 								private string FindCityInDocument(HtmlAgilityPack.HtmlDocument document)
 								{
 												HtmlNodeCollection nodes = document.DocumentNode.SelectNodes("//td[@class='row']");
-												// błąd gdy nodes = null -> powiadomienie że nie istnieje miasto o podanym kodzie
-												string city = nodes[2].InnerText;
-												string encodedCity = EncodeCity(city);
-												return encodedCity;
+												if(nodes == null)
+												{
+																return "";
+												}
+												else
+												{
+																string city = nodes[2].InnerText;
+																string encodedCity = EncodeCity(city);
+																return encodedCity;
+												}
 								}
 
 								private string EncodeCity(string city)
 								{
-												Encoding pageEncoding = Encoding.GetEncoding("ISO-8859-2");
-												Encoding e = Encoding.UTF8;
-												byte[] isoBytes = pageEncoding.GetBytes(city);
-												byte[] utfBytes = Encoding.Convert(pageEncoding, e, isoBytes);
-												string encodedCity = e.GetString(utfBytes);
+												string encodedCity = city.Replace('±', 'ą');
+												encodedCity = encodedCity.Replace('¶', 'ś');
+												encodedCity = encodedCity.Replace('¦', 'Ś');
+												encodedCity = encodedCity.Replace('Ľ', 'ź');
+												encodedCity = encodedCity.Replace('¬', 'Ź');
 												return encodedCity;
 								}
 

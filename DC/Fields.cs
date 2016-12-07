@@ -8,7 +8,6 @@ namespace DC
 {
 				static class Fields
 				{
-								public static bool incorrectTitleYear;
 
 								public enum Field
 								{

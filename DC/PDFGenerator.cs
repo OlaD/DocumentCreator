@@ -11,7 +11,7 @@ namespace DC
 				class PDFGenerator
 				{
 								const int FONT_SIZE = 12;
-								const int SMALL_FONT_SIZE = 6;
+								const int SMALL_FONT_SIZE = 8;
 								const int BIG_FONT_SIZE = 18;
 
 								const string FONT_PATH = "times.ttf";
@@ -28,15 +28,15 @@ namespace DC
 												this.documentObject = documentObject;
 								}
 
-								public void GeneratePDF()
+								public void GeneratePDF(string path)
 								{
-												document = CreateDocument("tmp.pdf");
+												document = CreateDocument(path);
 												document.Open();
 												CreateFonts();
 												WriteAll();
 												document.Close();
 
-												MessageBox.Show("Wygenerowano PDF");
+												MessageBox.Show("Wygenerowano plik PDF");
 								}
 
 								private Document CreateDocument(string path)
@@ -67,6 +67,10 @@ namespace DC
 												WriteHeader();
 												WriteApplication();
 												WriteTitles();
+												WriteJobs();
+												WriteAchievements();
+												WriteFooter();
+												//WriteSignatureSpace();
 								}
 
 								private void WriteOrganisationUnit()
@@ -189,7 +193,12 @@ namespace DC
 												StringBuilder text = new StringBuilder();
 												text.Append(date.Day);
 												text.Append(".");
-												text.Append(date.Month);
+												string month = date.Month.ToString();
+												if (month.Length == 1)
+												{
+																month = "0" + month;
+												}
+												text.Append(month);
 												text.Append(".");
 												text.Append(date.Year);
 												text.Append(" r.");
@@ -248,6 +257,29 @@ namespace DC
 								private void WriteTitles()
 								{
 												string academyText = BuildAcademyText();
+												Chunk academy = new Chunk(academyText, font);
+
+												string masterDegreeText = BuildMasterDegreeText();
+												Chunk masterDegree = new Chunk(masterDegreeText, font);
+
+												string doctorDegreeText = BuildDoctorDegreeText();
+												Chunk doctorDegree = new Chunk(doctorDegreeText, font);
+
+												string profDegreeText = BuildProfessorDegreeText();
+												Chunk profDegree = new Chunk(profDegreeText, font);
+
+												Paragraph titles = new Paragraph();
+												titles.Add(academy);
+												titles.Add(Chunk.NEWLINE);
+												titles.Add(masterDegree);
+												titles.Add(Chunk.NEWLINE);
+												titles.Add(doctorDegree);
+												titles.Add(Chunk.NEWLINE);
+												titles.Add(profDegree);
+
+												titles.SpacingBefore = 20;
+
+												document.Add(titles);
 								}
 
 								private string BuildAcademyText()
@@ -260,5 +292,184 @@ namespace DC
 												text.Append(academy.nazwa_wydzialu);
 												return text.ToString();
 								}
+
+								private string BuildMasterDegreeText()
+								{
+												Tytuly titles = documentObject.kandydat.uzyskane_tytuly;
+												StringBuilder text = new StringBuilder();
+												text.Append("a) uzyskał /a/ tytuł zawodowy ");
+												if (titles.tytul_zawodowy != null)
+												{
+																text.Append(titles.tytul_zawodowy.jaki.Replace('z', 'ż'));			// mgr inz. -> mgr inż.
+																text.Append(" (");
+																text.Append(titles.tytul_zawodowy.data_uzyskania);
+																text.Append(" r.)");
+												}
+												else
+												{
+																text.Append("-");
+												}
+
+												return text.ToString();
+								}
+
+								private string BuildDoctorDegreeText()
+								{
+												Tytuly titles = documentObject.kandydat.uzyskane_tytuly;
+												Tytul_Naukowy title = titles.tytul_naukowy;
+
+												StringBuilder text = new StringBuilder();
+												text.Append("b) uzyskał /a/ stopnie naukowe ");
+												if (titles.stopien_naukowy != null)
+												{
+																foreach (Stopien_Naukowy degree in titles.stopien_naukowy)
+																{
+																				text.Append(degree.jaki);
+																				text.Append(" (");
+																				text.Append(degree.data_uzyskania);
+																				text.Append(" r.), ");
+																}
+																int l = ", ".Length;
+																text.Remove(text.Length - l, l);
+												}
+												else
+												{
+																text.Append("-");
+												}
+
+												return text.ToString();
+								}
+
+								private string BuildProfessorDegreeText()
+								{
+												Tytuly titles = documentObject.kandydat.uzyskane_tytuly;
+												StringBuilder text = new StringBuilder();
+												text.Append("c) uzyskał /a/ tytuł naukowy ");
+												if (titles.tytul_naukowy != null)
+												{
+																text.Append("prof.");
+																text.Append(" (");
+																text.Append(titles.tytul_naukowy.data_uzyskania);
+																text.Append(" r.)");
+												}
+												else
+												{
+																text.Append("-");
+												}
+												return text.ToString();
+								}
+
+								private void WriteJobs()
+								{
+												Paragraph jobsParagraph = new Paragraph();
+
+												Chunk jobHeader = new Chunk("1. Dotychczasowy przebieg pracy:", font);
+												jobsParagraph.Add(jobHeader);
+												jobsParagraph.Add(Chunk.NEWLINE);
+
+												Praca[] jobs = documentObject.kandydat.przebieg_pracy;
+												if (jobs != null)
+												{
+																foreach (Praca job in jobs)
+																{
+																				string jobText = BuildJobText(job);
+																				Chunk jobLine = new Chunk(jobText, font);
+																				jobsParagraph.Add(jobLine);
+																				jobsParagraph.Add(Chunk.NEWLINE);
+																}
+												}
+												else
+												{
+																jobsParagraph.Add(new Chunk(" - ", font));
+																jobsParagraph.Add(Chunk.NEWLINE);
+												}
+
+												jobsParagraph.SpacingBefore = 20;
+
+												document.Add(jobsParagraph);
+								}
+
+								private string BuildJobText(Praca job)
+								{
+												StringBuilder text = new StringBuilder();
+												text.Append(" od ");
+												text.Append(job.rok_rozpoczecia);
+												text.Append(" r. ");
+												text.Append("do ");
+												text.Append(job.rok_zakonczenia);
+												text.Append(" r. ");
+												text.Append("w ");
+												text.Append(job.miejsce);
+												text.Append(" stanowisko ");
+												text.Append(job.stanowisko);
+												return text.ToString();
+								}
+
+								private void WriteAchievements()
+								{
+												Paragraph achievementsParagraph = new Paragraph();
+
+												Chunk achievementsHeader = new Chunk("2. Osiągnięcia naukowe, dydaktyczne i organizacyjne kandydata", font);
+												achievementsParagraph.Add(achievementsHeader);
+												achievementsParagraph.Add(Chunk.NEWLINE);
+
+												string[] achievements = documentObject.kandydat.osiagniecia;
+												if (achievements != null)
+												{
+																//foreach (string achievement in achievements)
+																for(int i=0; i<achievements.Length; i++)
+																{
+																				string lineText = "· " + achievements[i];
+																				if (i < achievements.Length - 1)
+																				{
+																								lineText += ",";
+																				}
+																				Chunk achievementLine = new Chunk(lineText, font);
+																				achievementsParagraph.Add(achievementLine);
+																				achievementsParagraph.Add(Chunk.NEWLINE);
+																}
+												}
+												else
+												{
+																Chunk achievementLine = new Chunk(" - ", font);
+																achievementsParagraph.Add(achievementLine);
+																achievementsParagraph.Add(Chunk.NEWLINE);
+												}
+
+												achievementsParagraph.SpacingBefore = 20;
+												document.Add(achievementsParagraph);
+								}
+
+								private void WriteFooter()
+								{
+												PdfPTable footer = new PdfPTable(2);
+												footer.SpacingBefore = 30;
+												footer.WidthPercentage = 100;
+												footer.AddCell(getCell(BuildFooterDateText(), PdfPCell.ALIGN_LEFT, font));
+												footer.AddCell(getCell(".......................................................", PdfPCell.ALIGN_RIGHT, font));
+												document.Add(footer);
+
+												PdfPTable sign = new PdfPTable(1);
+												sign.HorizontalAlignment = Element.ALIGN_RIGHT;
+												sign.WidthPercentage = 35;
+												string text = "podpis Dziekana Wydziału,\n lub Kierownika jednostki organizacyjnej";
+												sign.AddCell(getCell(text, PdfPCell.ALIGN_CENTER, smallFont));
+												document.Add(sign);
+								}
+
+								private PdfPCell getCell(String text, int alignment, Font f)
+								{
+												PdfPCell cell = new PdfPCell(new Phrase(text, f));
+												cell.Padding = 0;
+												cell.HorizontalAlignment = alignment;
+												cell.Border = PdfPCell.NO_BORDER;
+												return cell;
+								}
+
+								private string BuildFooterDateText()
+								{
+												return "Gdańsk, dnia " + BuildDate(documentObject.data_zlozenia);
+								}
+
 				}
 }
