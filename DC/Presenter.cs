@@ -12,8 +12,6 @@ namespace DC
 												this.view = view;
 								}
 
-								// test:
-								// pola w view będą miały odpowiednie wartości
 								public void LoadDataToFields(string path)
 								{
 												Serializer<Wniosek> serializer = new Serializer<Wniosek>();
@@ -27,25 +25,18 @@ namespace DC
 												};
 								}
 
-								// test:
-								// obiekt będzie miał odpowiednie wartości
 								private Wniosek SerializeDocument(string path, Serializer<Wniosek> serializer)
 								{	
 												Wniosek document = serializer.loadFromXML(path);
 												return document;
 								}
 
-								// test:
-								// dokument będzie miał odpowiednie wartości
 								private XmlDocument LoadDataToXML(Serializer<Wniosek> serializer, Wniosek document)
 								{
 												XmlDocument xmlDocument = serializer.loadToXML(document);
 												return xmlDocument;
 								}
 
-								// test:
-								// poprawny dokument zwróci true
-								// zły zwróci false
 								private bool ValidateData(XmlDocument xmlDocument)
 								{
 												Validator validator = new Validator();
@@ -102,11 +93,10 @@ namespace DC
 
 												if (isCorrect)
 												{
-																//if (view.SaveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+																if (view.SaveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 																{
 																				PDFGenerator generator = new PDFGenerator(document);
-																				//generator.GeneratePDF(view.SaveFileDialog.FileName);
-																				generator.GeneratePDF("tmp.pdf");
+																				generator.GeneratePDF(view.SaveFileDialog.FileName);
 																}
 												};
 								}

@@ -1,8 +1,5 @@
 ﻿using System.Net;
 using HtmlAgilityPack;
-using System.Text;
-using System.Net.Security;
-using System.IO;
 
 namespace DC
 {

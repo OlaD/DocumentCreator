@@ -60,7 +60,6 @@ namespace DC
 
 								public string ValidNode(Fields.Field field, XmlDocument xml)
 								{
-												//xmlValid = true;
 												xml.Schemas.Add(null, "schema.xsd");
 
 												ValidationEventHandler eventHandler = new ValidationEventHandler(validationNodeEvent);

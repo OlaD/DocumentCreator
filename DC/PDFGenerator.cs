@@ -1,7 +1,6 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
-using iTextSharp.text.pdf.draw;
 using System.Windows.Forms;
 using System;
 using System.Text;
@@ -70,7 +69,6 @@ namespace DC
 												WriteJobs();
 												WriteAchievements();
 												WriteFooter();
-												//WriteSignatureSpace();
 								}
 
 								private void WriteOrganisationUnit()
@@ -97,7 +95,6 @@ namespace DC
 												header.Leading = 20;
 												header.SpacingBefore = 20;
 												header.SpacingAfter = 40;
-												// TODO większy odstęp między wyrazami
 												document.Add(header);
 								}
 
